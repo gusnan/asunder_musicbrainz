@@ -13,4 +13,4 @@ src/*.o
 src/asunder
 src/Makefile.in
 src/Makefile
-
+config.log
