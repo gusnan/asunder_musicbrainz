@@ -1,0 +1,89 @@
+Asunder
+=======
+http://littlesvr.ca/asunder
+
+Asunder is a graphical Audio CD ripper and encoder. You can use it to save tracks from an Audio CD as WAV, MP3, OGG, FLAC, and/or Wavpack.
+
+Features
+========
+* Supports WAV, MP3, Ogg Vorbis, FLAC, Opus, Wavpack, Musepack, AAC, and Monkey's audio files
+* Uses CDDB to name and tag each track
+* Can encode to multiple formats in one session
+* Creates M3U playlists
+* Allows for each track to be by a different artist
+* Does not require a specific desktop environment
+
+Requirements
+============
+* Linux
+* GTK 2.4 or greater
+* Libcddb 0.9.5 or greater
+  http://libcddb.sourceforge.net/
+* Cdparanoia
+  http://www.xiph.org/paranoia/
+* LAME (optional for MP3 support)
+  http://lame.sourceforge.net/
+* Vorbis-Tools (optional for Ogg Vorbis support)
+  http://www.vorbis.com/
+* Fraunhofer FDK AAC (optional for Aacsupport)
+* FLAC (optional for FLAC support)
+  http://flac.sourceforge.net/
+* Opus (optional for Opus support)
+  http://opus-codec.org/
+* Wavpack (optional for wavpack support)
+  http://www.wavpack.com/
+* mpcenc (optional for Musepack support)
+  http://www.musepack.net/
+* mac (optional for Monkey's Audio support)
+  http://www.monkeysaudio.com/
+
+To compile from source you may need the -dev or -devel versions of GTK and libcddb. On Ubuntu these packages are called libgtk2.0-dev and libcddb2-dev.
+
+Compiling
+=========
+First install all the dependencies. LAME, Vorbis-Tools, FLAC, FDK-AAC and Wavpack don't have to be installed to compile. They are only needed at runtime if you choose to encode in those formats.
+
+mpcenc and mac are also not required and may be difficult to install on your distribution. If you really want them, you probably already have them.
+
+Then run:
+
+./configure # If you don't see a 'configure' file, run './autogen.sh' first. 
+
+If you get errors, it's probably a missing dependency so you'll have to install that first. Afterwards, run:
+
+make
+
+There shouldn't be any errors.
+
+Now you can run asunder from the 'src' directory, but you probably want to install it, so:
+
+su
+[enter root password]
+make install
+
+And on something like Ubuntu that won't let you su:
+
+sudo make install
+[enter user's password]
+
+If on any of the steps above you get errors, or even warnings, please do send me the output so I can fix them.
+
+Contact
+=======
+I would love to hear from you, to know how you made use of Asunder, or with bug reports, or feature requests. Please use the form at http://littlesvr.ca/contact.php to send me email. Thanks in advance!
+
+Bug Reports
+===========
+Please help me improve Asunder by sending me bug reports. The more of the following you can do, the easier it will be for me to fix:
+- be able to reproduce the bug consistently
+- select "Log to /tmp/asunder.log" in the advanced preferences and send me the asunder.log file
+- if it only happens with one CD, tell me what it is and, if it's freely available, where I can get it
+- it's better to give me too much detail than too little
+
+Credits
+=======
+See the AUTHORS file or click About/Credits in Asunder for a list of contributors.
+
+License
+=======
+The source code for this version of Asunder is distributed under the GNU General Public Licence version 2.

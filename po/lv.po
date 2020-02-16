@@ -1,0 +1,535 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2008
+# This file is distributed under the same license as the PACKAGE package.
+# Kristaps Kūlis <kristaps.kulis@gmail.com> , 2009
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-10-21 08:12-0400\n"
+"PO-Revision-Date: 2009-01-26 18:40+0300\n"
+"Last-Translator: Kristaps Kūlis <kristaps.kulis@gmail.com>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/main.c:136 ../src/interface.c:269
+msgid "Rip"
+msgstr "Izvilkt"
+
+#: ../src/main.c:146
+msgid "Track"
+msgstr "Celiņš"
+
+#: ../src/main.c:154
+msgid "Artist"
+msgstr "Izpildītājs"
+
+#: ../src/main.c:162 ../src/main.c:170
+msgid "Title"
+msgstr "Nosaukums"
+
+#: ../src/main.c:178
+msgid "Time"
+msgstr "Laiks"
+
+#: ../src/main.c:204
+msgid ""
+"'cdparanoia' was not found in your path. Asunder requires cdparanoia to rip "
+"CDs."
+msgstr "'cdparanoia' netika atrasts. Asunder vajag cdparanoia CD izvilkšanai"
+
+#. Debug print add time last taken by the open() call.
+#. snprintf(msgStr, 1024, "%s [open %.1lf sec]",
+#. _("<b>Checking disc...</b>"), open_diff_time / 1E6);
+#. This is to deal with the fact that the signal below will take up to
+#. a second to get processed in refresh_thread() which will call check_disk()
+#. which will set the label to the same thing at the start.
+#: ../src/main.c:249 ../src/main.c:274 ../src/main.c:874
+msgid "<b>Checking disc...</b>"
+msgstr ""
+
+#: ../src/main.c:543
+msgid "<b>Getting disc info from the internet...</b>"
+msgstr "<b>Ievācu diska informāciju no interneta</b>"
+
+#: ../src/main.c:604
+msgid "<b>Reading disc...</b>"
+msgstr ""
+
+#: ../src/callbacks.c:58 ../src/callbacks.c:292 ../src/callbacks.c:320
+#: ../src/callbacks.c:329 ../src/callbacks.c:338 ../src/callbacks.c:348
+#: ../src/interface.c:667 ../src/interface.c:754 ../src/interface.c:863
+#: ../src/interface.c:999
+#, fuzzy, c-format
+msgid "%dKbps"
+msgstr "32Kbps"
+
+#: ../src/callbacks.c:701
+msgid "No CD is inserted. Please insert a CD into the CD-ROM drive."
+msgstr "Disks nav ievietots. Lūdzu ieliec CD CD-ROM dzinī"
+
+#: ../src/callbacks.c:720 ../src/callbacks.c:746 ../src/callbacks.c:771
+#: ../src/callbacks.c:796 ../src/callbacks.c:821 ../src/callbacks.c:847
+#: ../src/callbacks.c:872 ../src/callbacks.c:897
+#, c-format
+msgid ""
+"%s was not found in your path. Asunder requires it to create %s files. All "
+"%s functionality is disabled."
+msgstr ""
+"%s netika atrasts. Asunder vajag to, lai izveidotu %s failus. %s "
+"funkcionalitāte nav pieejama"
+
+#: ../src/callbacks.c:987
+msgid "Select all for ripping"
+msgstr "Izvēlēties visus izvilkšanai"
+
+#: ../src/callbacks.c:993
+msgid "Deselect all for ripping"
+msgstr "Neizvēlēties nevienu izvilkšanai"
+
+#: ../src/callbacks.c:999
+msgid "Capitalize Artists & Titles"
+msgstr ""
+
+#: ../src/callbacks.c:1029
+msgid "Swap Artist <=> Title"
+msgstr ""
+
+#: ../src/interface.c:94
+msgid "CDDB Lookup"
+msgstr "CDDB informācijas iegūšana"
+
+#: ../src/interface.c:144
+msgid "Disc:"
+msgstr "Disks"
+
+#: ../src/interface.c:150
+#, fuzzy
+msgid "Album Artist:"
+msgstr "Albuma izpildītājs:"
+
+#: ../src/interface.c:157
+#, fuzzy
+msgid "Album Title:"
+msgstr "Albuma nosaukums:"
+
+#: ../src/interface.c:164
+#, fuzzy
+msgid "Single Artist"
+msgstr "Viens izpildītājs"
+
+#: ../src/interface.c:176
+msgid "First track number:"
+msgstr ""
+
+#: ../src/interface.c:189
+msgid "Track number width in filename:"
+msgstr ""
+
+#: ../src/interface.c:215
+#, fuzzy
+msgid "Genre / Year:"
+msgstr "Vispārīgi"
+
+#: ../src/interface.c:418
+msgid "Preferences"
+msgstr "Iestatījumi"
+
+#: ../src/interface.c:435 ../src/interface.c:441
+msgid "Destination folder"
+msgstr "Mērķa mape"
+
+#: ../src/interface.c:445
+msgid "Create M3U playlist"
+msgstr "Izveidot M3U skaņdarbu sarakstu"
+
+#: ../src/interface.c:453
+msgid "CD-ROM device: "
+msgstr "CD-ROM iekārta"
+
+#: ../src/interface.c:462
+msgid ""
+"Default: /dev/cdrom\n"
+"Other example: /dev/hdc\n"
+"Other example: /dev/sr0"
+msgstr ""
+"Noklusētā: /dev/cdrom \n"
+"Cits piemērs: /dev/hdc\n"
+"Cits piemērs: /dev/sr0"
+
+#: ../src/interface.c:466
+msgid "Eject disc when finished"
+msgstr "Izgrūst disku pēc pabeigšanas"
+
+#: ../src/interface.c:474
+msgid "General"
+msgstr "Vispārīgi"
+
+#: ../src/interface.c:494
+#, fuzzy
+msgid ""
+"%A - Artist\n"
+"%L - Album\n"
+"%N - Track number (2-digit)\n"
+"%Y - Year (4-digit or \"0\")\n"
+"%T - Song title"
+msgstr ""
+"%A - Izpildītājs \n"
+"%L - Albums \n"
+"%N celiņa kārtas numurs (2 ciparu)\n"
+"%T - skaņdarba nosaukums"
+
+#: ../src/interface.c:499
+#, fuzzy, c-format
+msgid "%G - Genre"
+msgstr "Vispārīgi"
+
+#: ../src/interface.c:514
+msgid "Album directory: "
+msgstr "Albuma mape:"
+
+#: ../src/interface.c:521 ../src/prefs.c:776
+msgid "Playlist file: "
+msgstr "Skaņdarbu saraksts:"
+
+#: ../src/interface.c:528 ../src/prefs.c:788 ../src/prefs.c:798
+msgid "Music file: "
+msgstr "Mūzikas fails:"
+
+#: ../src/interface.c:542
+msgid ""
+"This is relative to the destination folder (from the General tab).\n"
+"Can be blank.\n"
+"Default: %A - %L\n"
+"Other example: %A/%L"
+msgstr ""
+"Šis ir relatīvs mērķa mapei (Cilnē Vispārīgi). \n"
+"Var tikt atstāts tukšs.\n"
+"Noklusētais: %A - %L \n"
+"Cits piemērs %A/%L"
+
+#: ../src/interface.c:554
+msgid ""
+"This will be stored in the album directory.\n"
+"Can be blank.\n"
+"Default: %A - %L"
+msgstr ""
+"Tiks saglabāts albuma mapē.\n"
+"Var tikt atstāts tukšs.\n"
+"Noklusētais: %A - %L"
+
+#: ../src/interface.c:565
+msgid ""
+"This will be stored in the album directory.\n"
+"Cannot be blank.\n"
+"Default: %A - %T\n"
+"Other example: %N - %T"
+msgstr ""
+"Tiks saglabāts albuma mapē. \n"
+"Nevar tikt atstāts tukšs. \n"
+"Noklusētais: %A - %T\n"
+"Cits piemērs: %N - %T"
+
+#: ../src/interface.c:570
+msgid "Filename formats"
+msgstr "Failu vārdu formāti"
+
+#: ../src/interface.c:575
+msgid "Allow changing first track number"
+msgstr ""
+
+#: ../src/interface.c:580
+msgid "Filenames"
+msgstr "Failu vārdi"
+
+#. WAV
+#. frame3 = gtk_frame_new (NULL);
+#. gtk_frame_set_shadow_type(GTK_FRAME(frame3), GTK_SHADOW_IN);
+#. gtk_widget_show (frame3);
+#. gtk_box_pack_start (GTK_BOX (vbox), frame3, FALSE, FALSE, 0);
+#. alignment8 = gtk_alignment_new (0.5, 0.5, 1, 1);
+#. gtk_widget_show (alignment8);
+#. gtk_container_add (GTK_CONTAINER (frame3), alignment8);
+#. gtk_alignment_set_padding (GTK_ALIGNMENT (alignment8), 2, 2, 12, 2);
+#. vbox2 = gtk_vbox_new (FALSE, 0);
+#. gtk_widget_show (vbox2);
+#. gtk_container_add (GTK_CONTAINER (alignment8), vbox2);
+#: ../src/interface.c:614
+msgid "WAV (uncompressed)"
+msgstr "WAV (nekompresēts)"
+
+#: ../src/interface.c:635
+msgid "Variable bit rate (VBR)"
+msgstr "Mainīgs bitreits (VBR)"
+
+#: ../src/interface.c:643
+msgid "Better quality for the same size."
+msgstr "Labāka kvalitāte tādā pašā izmērā"
+
+#: ../src/interface.c:649 ../src/interface.c:736 ../src/interface.c:847
+#: ../src/interface.c:933 ../src/interface.c:981
+msgid "Bitrate"
+msgstr "Bitreits"
+
+#: ../src/interface.c:664 ../src/interface.c:751
+msgid ""
+"Higher bitrate is better quality but also bigger file. Most people use "
+"192Kbps."
+msgstr ""
+"Lielāks bitreits nozīmē labāku kvalitāti, bet arī lielāku faila izmēri. "
+"Vairums cilvēku izmanto 192kbps"
+
+#: ../src/interface.c:673
+msgid "MP3 (lossy compression)"
+msgstr "MP3 (zudumradoša kompresija)"
+
+#: ../src/interface.c:696
+msgid "Quality"
+msgstr "Kvalitāte"
+
+#: ../src/interface.c:707
+msgid "Higher quality means bigger file. Default is 6."
+msgstr "Labāka kvalitāte nozīmē lielāku faila izmēru. Noklusēti ir 6."
+
+#: ../src/interface.c:709
+msgid "OGG Vorbis (lossy compression)"
+msgstr "OGG Vorbis (zudumradoša kompresija)"
+
+#: ../src/interface.c:760
+#, fuzzy
+msgid "AAC (lossy compression)"
+msgstr "MP3 (zudumradoša kompresija)"
+
+#: ../src/interface.c:783 ../src/interface.c:899 ../src/interface.c:1038
+msgid "Compression level"
+msgstr "Kompresijas pakāpe"
+
+#: ../src/interface.c:794 ../src/interface.c:1051
+msgid "This does not affect the quality. Higher number means smaller file."
+msgstr "Tas neietekmē kvalitāte. Lielāks skaitlis nozīmē mazāku faila izmēru."
+
+#: ../src/interface.c:796
+msgid "FLAC (lossless compression)"
+msgstr "FLAC (Bezzudumu kompresija)"
+
+#: ../src/interface.c:815
+msgid "More formats"
+msgstr "Vairāk formāti"
+
+#: ../src/interface.c:861
+#, fuzzy
+msgid ""
+"Higher bitrate is better quality but also bigger file. Most people use "
+"160Kbps."
+msgstr ""
+"Lielāks bitreits nozīmē labāku kvalitāti, bet arī lielāku faila izmēri. "
+"Vairums cilvēku izmanto 192kbps"
+
+#: ../src/interface.c:869
+#, fuzzy
+msgid "OPUS (lossy compression)"
+msgstr "MP3 (zudumradoša kompresija)"
+
+#: ../src/interface.c:912
+msgid ""
+"This does not affect the quality. Higher number means smaller file. Default "
+"is 1 (recommended)."
+msgstr ""
+"Tas neietekmē kvalitāti. Augstāks skaitlis nozīmē mazāku failu. Noklusēti ir "
+"1 (rekomendējam)."
+
+#: ../src/interface.c:918
+#, fuzzy
+msgid "Hybrid compression"
+msgstr "Hibrīdkompresija"
+
+#: ../src/interface.c:927
+msgid ""
+"The format is lossy but a correction file is created for restoring the "
+"lossless original."
+msgstr ""
+"Formāts ir zudumradošs, bet tiek izveidots labojumu fails, lai atjaunotu "
+"oriģinālo kvalitāti."
+
+#: ../src/interface.c:997
+#, fuzzy
+msgid "Higher bitrate is better quality but also bigger file."
+msgstr ""
+"Lielāks bitreits nozīmē labāku kvalitāti, bet arī lielāku faila izmēri. "
+"Vairums cilvēku izmanto 192kbps"
+
+#: ../src/interface.c:1005
+#, fuzzy
+msgid "Musepack (lossy compression)"
+msgstr "MP3 (zudumradoša kompresija)"
+
+#: ../src/interface.c:1053
+#, fuzzy
+msgid "Monkey's Audio (lossless compression)"
+msgstr "FLAC (Bezzudumu kompresija)"
+
+#. END MONKEY
+#. ~ expander = gtk_expander_new(_("Proprietary encoders"));
+#. ~ gtk_widget_show (expander);
+#. ~ gtk_box_pack_start (GTK_BOX (vbox), expander, FALSE, FALSE, 0);
+#. ~ GLADE_HOOKUP_OBJECT (prefs, expander, "proprietary_formats_expander");
+#. ~ hiddenbox = gtk_vbox_new (FALSE, 0);
+#. ~ gtk_widget_show (hiddenbox);
+#. ~ gtk_container_add (GTK_CONTAINER (expander), hiddenbox);
+#: ../src/interface.c:1071
+msgid "Encode"
+msgstr "Pārkodēt"
+
+#: ../src/interface.c:1105
+msgid "Get disc info from the internet automatically"
+msgstr "Ievākt diska informāciju no interneta automātiski"
+
+#: ../src/interface.c:1113 ../src/interface.c:1159
+msgid "Server: "
+msgstr "Serveris:"
+
+#: ../src/interface.c:1123
+msgid "The CDDB server to get disc info from (default is freedb.freedb.org)"
+msgstr ""
+
+#: ../src/interface.c:1129 ../src/interface.c:1172
+msgid "Port: "
+msgstr "Ports:"
+
+#: ../src/interface.c:1139
+msgid "The CDDB server port (default is 8880)"
+msgstr ""
+
+#: ../src/interface.c:1146
+#, fuzzy
+msgid "Use an HTTP proxy to connect to the internet"
+msgstr "Lietot HTTP starpniekserveri "
+
+#: ../src/interface.c:1194
+msgid "Artist/Title separator: "
+msgstr ""
+
+#: ../src/interface.c:1205
+msgid "Log to /var/log/asunder.log"
+msgstr ""
+
+#: ../src/interface.c:1210
+msgid "Faster ripping (no error correction)"
+msgstr ""
+
+#: ../src/interface.c:1219
+msgid "Advanced"
+msgstr "Paplašināti"
+
+#: ../src/interface.c:1292 ../src/interface.c:1328
+msgid "Ripping"
+msgstr "Izvilkšana"
+
+#: ../src/interface.c:1321
+msgid "Total progress"
+msgstr "Kopējais progress"
+
+#: ../src/interface.c:1335
+msgid "Encoding"
+msgstr "Pārkodēšana"
+
+#: ../src/interface.c:1923
+msgid ""
+"An application to save tracks from an Audio CD \n"
+"as WAV, MP3, OGG, FLAC, Wavpack, Opus, Musepack, Monkey's Audio, and/or AAC "
+"files."
+msgstr ""
+
+#: ../src/interface.c:1965
+#, c-format
+msgid "%d file created successfully"
+msgid_plural "%d files created successfully"
+msgstr[0] ""
+msgstr[1] "%d fails izveidots "
+
+#: ../src/interface.c:1974
+#, c-format
+msgid "There was an error creating %d file"
+msgid_plural "There was an error creating %d files"
+msgstr[0] ""
+msgstr[1] "Neizdevās izveidot %d failu"
+
+#: ../src/prefs.c:775 ../src/prefs.c:787
+#, c-format
+msgid "Invalid characters in the '%s' field"
+msgstr "Nederīgas zīmes laukā '%s'"
+
+#: ../src/prefs.c:797
+#, c-format
+msgid "'%s' cannot be empty"
+msgstr "'%s' nevar būt tukšs"
+
+#: ../src/prefs.c:812
+#, fuzzy
+msgid "Invalid proxy port number"
+msgstr "Nederīgs starpniekservera porta numurs"
+
+#: ../src/prefs.c:825
+#, fuzzy
+msgid "Invalid cddb server port number"
+msgstr "Nederīgs starpniekservera porta numurs"
+
+#: ../src/support.c:47
+msgid "Overwrite?"
+msgstr "Pārrakstīt?"
+
+#: ../src/support.c:60
+#, c-format
+msgid "The file '%s' already exists. Do you want to overwrite it?\n"
+msgstr "Fails '%s' jau eksistē. Vai vēlies to pārrakstīt? \n"
+
+#: ../src/support.c:66
+msgid "Remember the answer for _all the files made from this CD"
+msgstr "Atcerēties atbildi visiem failiem, kas tiek izveidoti no šī CD"
+
+#: ../src/threads.c:188
+msgid ""
+"No ripping/encoding method selected. Please enable one from the "
+"'Preferences' menu."
+msgstr ""
+"Izvilkšanas/pārkodēšanas metode netika izvēlēta. Lūdzu izvēlies vienu "
+"'Iestatījumi' izvēlnē."
+
+#: ../src/threads.c:220
+msgid ""
+"No tracks were selected for ripping/encoding. Please select at least one "
+"track."
+msgstr ""
+"Netika izvēlēti celiņi izvilkšanai/pārkodēšanai. Lūdzu izvēlies vismaz vienu "
+"celiņu."
+
+#: ../src/threads.c:1298 ../src/threads.c:1300 ../src/threads.c:1304
+msgid "Waiting..."
+msgstr "Gaidu..."
+
+#, fuzzy
+#~ msgid "Higher quality means bigger file. Default is 60."
+#~ msgstr "Labāka kvalitāte nozīmē lielāku faila izmēru. Noklusēti ir 6."
+
+#, fuzzy
+#~ msgid "AAC (lossy compression, Nero encoder)"
+#~ msgstr "MP3 (zudumradoša kompresija)"
+
+#, fuzzy
+#~ msgid "Genre"
+#~ msgstr "Vispārīgi"
+
+#, fuzzy
+#~ msgid "Single Genre"
+#~ msgstr "Viens izpildītājs"
+
+#, fuzzy
+#~ msgid ""
+#~ "%s was not found in your path. Asunder requires it to create %s files.All "
+#~ "%s functionality is disabled."
+#~ msgstr ""
+#~ "%s netika atrasts. Asunder vajag to, lai izveidotu %s failus. %s "
+#~ "funkcionalitāte nav pieejama"

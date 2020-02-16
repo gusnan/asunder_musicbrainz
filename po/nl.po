@@ -1,0 +1,853 @@
+# Dutch translation of ISO Master.
+# This file is distributed under the same license as the ISO Master package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ISO Master 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-10-21 08:12-0400\n"
+"PO-Revision-Date: 2017-01-31 12:18+0100\n"
+"Last-Translator: Pjotr <pjotrvertaalt AT gmail.com>\n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/main.c:136 ../src/interface.c:269
+msgid "Rip"
+msgstr ""
+
+#: ../src/main.c:146
+msgid "Track"
+msgstr ""
+
+#: ../src/main.c:154
+msgid "Artist"
+msgstr ""
+
+#: ../src/main.c:162 ../src/main.c:170
+msgid "Title"
+msgstr ""
+
+#: ../src/main.c:178
+msgid "Time"
+msgstr ""
+
+#: ../src/main.c:204
+msgid ""
+"'cdparanoia' was not found in your path. Asunder requires cdparanoia to rip "
+"CDs."
+msgstr ""
+
+#. Debug print add time last taken by the open() call.
+#. snprintf(msgStr, 1024, "%s [open %.1lf sec]",
+#. _("<b>Checking disc...</b>"), open_diff_time / 1E6);
+#. This is to deal with the fact that the signal below will take up to
+#. a second to get processed in refresh_thread() which will call check_disk()
+#. which will set the label to the same thing at the start.
+#: ../src/main.c:249 ../src/main.c:274 ../src/main.c:874
+msgid "<b>Checking disc...</b>"
+msgstr ""
+
+#: ../src/main.c:543
+msgid "<b>Getting disc info from the internet...</b>"
+msgstr ""
+
+#: ../src/main.c:604
+msgid "<b>Reading disc...</b>"
+msgstr ""
+
+#: ../src/callbacks.c:58 ../src/callbacks.c:292 ../src/callbacks.c:320
+#: ../src/callbacks.c:329 ../src/callbacks.c:338 ../src/callbacks.c:348
+#: ../src/interface.c:667 ../src/interface.c:754 ../src/interface.c:863
+#: ../src/interface.c:999
+#, c-format
+msgid "%dKbps"
+msgstr ""
+
+#: ../src/callbacks.c:701
+msgid "No CD is inserted. Please insert a CD into the CD-ROM drive."
+msgstr ""
+
+#: ../src/callbacks.c:720 ../src/callbacks.c:746 ../src/callbacks.c:771
+#: ../src/callbacks.c:796 ../src/callbacks.c:821 ../src/callbacks.c:847
+#: ../src/callbacks.c:872 ../src/callbacks.c:897
+#, c-format
+msgid ""
+"%s was not found in your path. Asunder requires it to create %s files. All "
+"%s functionality is disabled."
+msgstr ""
+
+#: ../src/callbacks.c:987
+msgid "Select all for ripping"
+msgstr ""
+
+#: ../src/callbacks.c:993
+msgid "Deselect all for ripping"
+msgstr ""
+
+#: ../src/callbacks.c:999
+msgid "Capitalize Artists & Titles"
+msgstr ""
+
+#: ../src/callbacks.c:1029
+msgid "Swap Artist <=> Title"
+msgstr ""
+
+#: ../src/interface.c:94
+msgid "CDDB Lookup"
+msgstr ""
+
+#: ../src/interface.c:144
+msgid "Disc:"
+msgstr ""
+
+#: ../src/interface.c:150
+msgid "Album Artist:"
+msgstr ""
+
+#: ../src/interface.c:157
+msgid "Album Title:"
+msgstr ""
+
+#: ../src/interface.c:164
+msgid "Single Artist"
+msgstr ""
+
+#: ../src/interface.c:176
+msgid "First track number:"
+msgstr ""
+
+#: ../src/interface.c:189
+msgid "Track number width in filename:"
+msgstr ""
+
+#: ../src/interface.c:215
+msgid "Genre / Year:"
+msgstr ""
+
+#: ../src/interface.c:418
+msgid "Preferences"
+msgstr ""
+
+#: ../src/interface.c:435 ../src/interface.c:441
+msgid "Destination folder"
+msgstr ""
+
+#: ../src/interface.c:445
+msgid "Create M3U playlist"
+msgstr ""
+
+#: ../src/interface.c:453
+msgid "CD-ROM device: "
+msgstr ""
+
+#: ../src/interface.c:462
+msgid ""
+"Default: /dev/cdrom\n"
+"Other example: /dev/hdc\n"
+"Other example: /dev/sr0"
+msgstr ""
+
+#: ../src/interface.c:466
+msgid "Eject disc when finished"
+msgstr ""
+
+#: ../src/interface.c:474
+msgid "General"
+msgstr ""
+
+#: ../src/interface.c:494
+msgid ""
+"%A - Artist\n"
+"%L - Album\n"
+"%N - Track number (2-digit)\n"
+"%Y - Year (4-digit or \"0\")\n"
+"%T - Song title"
+msgstr ""
+
+#: ../src/interface.c:499
+#, c-format
+msgid "%G - Genre"
+msgstr ""
+
+#: ../src/interface.c:514
+#, fuzzy
+msgid "Album directory: "
+msgstr "Tijdelijke map"
+
+#: ../src/interface.c:521 ../src/prefs.c:776
+msgid "Playlist file: "
+msgstr ""
+
+#: ../src/interface.c:528 ../src/prefs.c:788 ../src/prefs.c:798
+msgid "Music file: "
+msgstr ""
+
+#: ../src/interface.c:542
+msgid ""
+"This is relative to the destination folder (from the General tab).\n"
+"Can be blank.\n"
+"Default: %A - %L\n"
+"Other example: %A/%L"
+msgstr ""
+
+#: ../src/interface.c:554
+msgid ""
+"This will be stored in the album directory.\n"
+"Can be blank.\n"
+"Default: %A - %L"
+msgstr ""
+
+#: ../src/interface.c:565
+msgid ""
+"This will be stored in the album directory.\n"
+"Cannot be blank.\n"
+"Default: %A - %T\n"
+"Other example: %N - %T"
+msgstr ""
+
+#: ../src/interface.c:570
+msgid "Filename formats"
+msgstr ""
+
+#: ../src/interface.c:575
+msgid "Allow changing first track number"
+msgstr ""
+
+#: ../src/interface.c:580
+#, fuzzy
+msgid "Filenames"
+msgstr "Hernoemen"
+
+#. WAV
+#. frame3 = gtk_frame_new (NULL);
+#. gtk_frame_set_shadow_type(GTK_FRAME(frame3), GTK_SHADOW_IN);
+#. gtk_widget_show (frame3);
+#. gtk_box_pack_start (GTK_BOX (vbox), frame3, FALSE, FALSE, 0);
+#. alignment8 = gtk_alignment_new (0.5, 0.5, 1, 1);
+#. gtk_widget_show (alignment8);
+#. gtk_container_add (GTK_CONTAINER (frame3), alignment8);
+#. gtk_alignment_set_padding (GTK_ALIGNMENT (alignment8), 2, 2, 12, 2);
+#. vbox2 = gtk_vbox_new (FALSE, 0);
+#. gtk_widget_show (vbox2);
+#. gtk_container_add (GTK_CONTAINER (alignment8), vbox2);
+#: ../src/interface.c:614
+msgid "WAV (uncompressed)"
+msgstr ""
+
+#: ../src/interface.c:635
+msgid "Variable bit rate (VBR)"
+msgstr ""
+
+#: ../src/interface.c:643
+msgid "Better quality for the same size."
+msgstr ""
+
+#: ../src/interface.c:649 ../src/interface.c:736 ../src/interface.c:847
+#: ../src/interface.c:933 ../src/interface.c:981
+msgid "Bitrate"
+msgstr ""
+
+#: ../src/interface.c:664 ../src/interface.c:751
+msgid ""
+"Higher bitrate is better quality but also bigger file. Most people use "
+"192Kbps."
+msgstr ""
+
+#: ../src/interface.c:673
+msgid "MP3 (lossy compression)"
+msgstr ""
+
+#: ../src/interface.c:696
+msgid "Quality"
+msgstr ""
+
+#: ../src/interface.c:707
+msgid "Higher quality means bigger file. Default is 6."
+msgstr ""
+
+#: ../src/interface.c:709
+msgid "OGG Vorbis (lossy compression)"
+msgstr ""
+
+#: ../src/interface.c:760
+msgid "AAC (lossy compression)"
+msgstr ""
+
+#: ../src/interface.c:783 ../src/interface.c:899 ../src/interface.c:1038
+msgid "Compression level"
+msgstr ""
+
+#: ../src/interface.c:794 ../src/interface.c:1051
+msgid "This does not affect the quality. Higher number means smaller file."
+msgstr ""
+
+#: ../src/interface.c:796
+msgid "FLAC (lossless compression)"
+msgstr ""
+
+#: ../src/interface.c:815
+msgid "More formats"
+msgstr ""
+
+#: ../src/interface.c:861
+msgid ""
+"Higher bitrate is better quality but also bigger file. Most people use "
+"160Kbps."
+msgstr ""
+
+#: ../src/interface.c:869
+msgid "OPUS (lossy compression)"
+msgstr ""
+
+#: ../src/interface.c:912
+msgid ""
+"This does not affect the quality. Higher number means smaller file. Default "
+"is 1 (recommended)."
+msgstr ""
+
+#: ../src/interface.c:918
+msgid "Hybrid compression"
+msgstr ""
+
+#: ../src/interface.c:927
+msgid ""
+"The format is lossy but a correction file is created for restoring the "
+"lossless original."
+msgstr ""
+
+#: ../src/interface.c:997
+msgid "Higher bitrate is better quality but also bigger file."
+msgstr ""
+
+#: ../src/interface.c:1005
+msgid "Musepack (lossy compression)"
+msgstr ""
+
+#: ../src/interface.c:1053
+msgid "Monkey's Audio (lossless compression)"
+msgstr ""
+
+#. END MONKEY
+#. ~ expander = gtk_expander_new(_("Proprietary encoders"));
+#. ~ gtk_widget_show (expander);
+#. ~ gtk_box_pack_start (GTK_BOX (vbox), expander, FALSE, FALSE, 0);
+#. ~ GLADE_HOOKUP_OBJECT (prefs, expander, "proprietary_formats_expander");
+#. ~ hiddenbox = gtk_vbox_new (FALSE, 0);
+#. ~ gtk_widget_show (hiddenbox);
+#. ~ gtk_container_add (GTK_CONTAINER (expander), hiddenbox);
+#: ../src/interface.c:1071
+msgid "Encode"
+msgstr ""
+
+#: ../src/interface.c:1105
+msgid "Get disc info from the internet automatically"
+msgstr ""
+
+#: ../src/interface.c:1113 ../src/interface.c:1159
+msgid "Server: "
+msgstr ""
+
+#: ../src/interface.c:1123
+msgid "The CDDB server to get disc info from (default is freedb.freedb.org)"
+msgstr ""
+
+#: ../src/interface.c:1129 ../src/interface.c:1172
+msgid "Port: "
+msgstr ""
+
+#: ../src/interface.c:1139
+msgid "The CDDB server port (default is 8880)"
+msgstr ""
+
+#: ../src/interface.c:1146
+msgid "Use an HTTP proxy to connect to the internet"
+msgstr ""
+
+#: ../src/interface.c:1194
+msgid "Artist/Title separator: "
+msgstr ""
+
+#: ../src/interface.c:1205
+msgid "Log to /var/log/asunder.log"
+msgstr ""
+
+#: ../src/interface.c:1210
+msgid "Faster ripping (no error correction)"
+msgstr ""
+
+#: ../src/interface.c:1219
+msgid "Advanced"
+msgstr ""
+
+#: ../src/interface.c:1292 ../src/interface.c:1328
+msgid "Ripping"
+msgstr ""
+
+#: ../src/interface.c:1321
+#, fuzzy
+msgid "Total progress"
+msgstr "Voortgang"
+
+#: ../src/interface.c:1335
+msgid "Encoding"
+msgstr ""
+
+#: ../src/interface.c:1923
+msgid ""
+"An application to save tracks from an Audio CD \n"
+"as WAV, MP3, OGG, FLAC, Wavpack, Opus, Musepack, Monkey's Audio, and/or AAC "
+"files."
+msgstr ""
+
+#: ../src/interface.c:1965
+#, c-format
+msgid "%d file created successfully"
+msgid_plural "%d files created successfully"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/interface.c:1974
+#, c-format
+msgid "There was an error creating %d file"
+msgid_plural "There was an error creating %d files"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../src/prefs.c:775 ../src/prefs.c:787
+#, c-format
+msgid "Invalid characters in the '%s' field"
+msgstr ""
+
+#: ../src/prefs.c:797
+#, c-format
+msgid "'%s' cannot be empty"
+msgstr ""
+
+#: ../src/prefs.c:812
+msgid "Invalid proxy port number"
+msgstr ""
+
+#: ../src/prefs.c:825
+msgid "Invalid cddb server port number"
+msgstr ""
+
+#: ../src/support.c:47
+#, fuzzy
+msgid "Overwrite?"
+msgstr "_Overzicht"
+
+#: ../src/support.c:60
+#, c-format
+msgid "The file '%s' already exists. Do you want to overwrite it?\n"
+msgstr ""
+
+#: ../src/support.c:66
+msgid "Remember the answer for _all the files made from this CD"
+msgstr ""
+
+#: ../src/threads.c:188
+msgid ""
+"No ripping/encoding method selected. Please enable one from the "
+"'Preferences' menu."
+msgstr ""
+
+#: ../src/threads.c:220
+msgid ""
+"No tracks were selected for ripping/encoding. Please select at least one "
+"track."
+msgstr ""
+
+#: ../src/threads.c:1298 ../src/threads.c:1300 ../src/threads.c:1304
+msgid "Waiting..."
+msgstr ""
+
+#~ msgid "      Estimated ISO Size: "
+#~ msgstr "      Geschatte grootte van ISO: "
+
+#~ msgid ""
+#~ "%s\n"
+#~ "\n"
+#~ "Do you wish to continue?"
+#~ msgstr ""
+#~ "%s\n"
+#~ "\n"
+#~ "Wilt u doorgaan?"
+
+#~ msgid "'%s' is not a regular file"
+#~ msgstr "'%s' is geen gangbaar bestand"
+
+#~ msgid "(scanning for duplicate files)"
+#~ msgstr "(bezig met het zoeken naar dubbele bestanden)"
+
+#~ msgid "Add"
+#~ msgstr "Toevoegen"
+
+#~ msgid "Add extension automatically"
+#~ msgstr "Voeg extensie automatisch toe"
+
+#~ msgid "Add to the ISO"
+#~ msgstr "Toevoegen aan ISO"
+
+#~ msgid "All files"
+#~ msgstr "Alle bestanden"
+
+#~ msgid "Boot Record Information"
+#~ msgstr "Bootrecord-informatie"
+
+#~ msgid "Boot record deleted"
+#~ msgstr "Bootrecord verwijderd"
+
+#~ msgid "Boot record type: 1200KiB Floppy"
+#~ msgstr "Bootrecord-type: 1200KiB-diskette"
+
+#~ msgid "Boot record type: 1440KiB Floppy"
+#~ msgstr "Bootrecord-type: 1440KiB-diskette"
+
+#~ msgid "Boot record type: 2880KiB Floppy"
+#~ msgstr "Bootrecord-type: 2880KiB-diskette"
+
+#~ msgid "Boot record type: No Emulation"
+#~ msgstr "Bootrecord-type: geen nabootsing"
+
+#~ msgid "Change permissions"
+#~ msgstr "Rechten veranderen"
+
+#~ msgid "Choose Boot Record File"
+#~ msgstr "Kies bootrecordbestand"
+
+#~ msgid "Create new directory on the ISO"
+#~ msgstr "Maaak nieuwe map op het ISO"
+
+#~ msgid "Create new directory on the filesystem"
+#~ msgstr "Maak nieuwe map in het bestandssysteem"
+
+#~ msgid "Creation time:"
+#~ msgstr "Tijdstip van vervaardiging:"
+
+#~ msgid "Delete from the ISO"
+#~ msgstr "Verwijderen uit ISO"
+
+#~ msgid "Edit"
+#~ msgstr "Bewerken"
+
+#~ msgid "Edit failed, please check Options/Editor"
+#~ msgstr "Bewerken mislukt, controleer a.u.b. Opties/Bewerker"
+
+#~ msgid "Editor"
+#~ msgstr "Bewerker"
+
+#~ msgid "Enter a new name:"
+#~ msgstr "Voer een nieuwe naam in:"
+
+#~ msgid "Enter name for new directory"
+#~ msgstr "Voer een naam in voor de nieuwe map"
+
+#~ msgid "Extract"
+#~ msgstr "Uitpakken"
+
+#~ msgid "Extract from the ISO"
+#~ msgstr "Uitpakken vanuit ISO"
+
+#~ msgid "Failed to add '%s': '%s'"
+#~ msgstr "Het toevoegen van '%s' is mislukt: '%s'"
+
+#~ msgid "Failed to add boot record: '%s'"
+#~ msgstr "Het toevoegen van het bootrecord is mislukt: '%s'"
+
+#~ msgid "Failed to change directory: '%s'"
+#~ msgstr "Het veranderen van map is mislukt: '%s'"
+
+#~ msgid "Failed to create directory %s"
+#~ msgstr "Het aanmaken van map '%s' is mislukt"
+
+#~ msgid "Failed to create directory %s: '%s'"
+#~ msgstr "Het aanmaken van de map '%s' is mislukt: '%s'"
+
+#~ msgid "Failed to delete '%s': '%s'"
+#~ msgstr "Het verwijderen van '%s' is mislukt: '%s'"
+
+#~ msgid "Failed to extract '%s': '%s'"
+#~ msgstr " '%s' kon niet worden uitgepakt: '%s'"
+
+#~ msgid "Failed to extract boot record: '%s'"
+#~ msgstr "Het uitpakken van het bootrecord is mislukt: '%s'"
+
+#~ msgid "Failed to initialise bkisofs: '%s'"
+#~ msgstr "Het opstarten van bkisofs is mislukt: '%s'"
+
+#~ msgid "Failed to open directory '%s', error %d"
+#~ msgstr "Het openen van de map '%s' is mislukt, fout %d"
+
+#~ msgid "Failed to open iso file for reading: '%s'"
+#~ msgstr "Het openen van het in te lezen ISO-bestand is mislukt: '%s'"
+
+#~ msgid "Failed to read directory tree: '%s'"
+#~ msgstr "Het inlezen van de mapstructuur is mislukt: '%s'"
+
+#~ msgid "Failed to read volume info: '%s'"
+#~ msgstr "Het inlezen van de stationsinformatie is mislukt: '%s'"
+
+#~ msgid "Failed to rename '%s': %s"
+#~ msgstr "De naam van het bestand '%s' kon niet gewijzigd worden: %s"
+
+#~ msgid "Failed to set %s as boot record: '%s'"
+#~ msgstr "Het instellen van '%s' als bootrecord is mislukt: '%s'"
+
+#~ msgid "Failed to write image to '%s': '%s'"
+#~ msgstr "Het wegschrijven van de schijfkopie naar '%s' is mislukt: '%s'"
+
+#~ msgid "Filename types (both recommended):"
+#~ msgstr "Bestandnaamsoorten (beide aanbevolen):"
+
+#~ msgid "Follow symbolic links"
+#~ msgstr "Volg symbolische koppelingen"
+
+#~ msgid "From file: 1200KiB floppy"
+#~ msgstr "Vanuit bestand: 1200KiB-diskette"
+
+#~ msgid "From file: 1440KiB floppy"
+#~ msgstr "Vanuit bestand: 1440KiB-diskette"
+
+#~ msgid "From file: 2880KiB floppy"
+#~ msgstr "Vanuit bestand: 2880KiB-diskette"
+
+#~ msgid "From file: no emulation"
+#~ msgstr "Vanuit bestand: geen nabootsing"
+
+#~ msgid ""
+#~ "GUI error, deleting anything other than files and directories doesn't work"
+#~ msgstr "GUI-fout, alleen bestanden en mappen kunnen worden verwijderd"
+
+#~ msgid "Go back"
+#~ msgstr "Terug"
+
+#~ msgid "Go back up one directory on the ISO"
+#~ msgstr "Eén map omhoog op het ISO"
+
+#~ msgid "Go back up one directory on the filesystem"
+#~ msgstr "Eén map omhoog in het bestandssysteem"
+
+#~ msgid "ISO Images"
+#~ msgstr "ISO-schijfkopieën"
+
+#~ msgid "ISO Master Help"
+#~ msgstr "Hulp bij ISO Master"
+
+#~ msgid "Image Information"
+#~ msgstr "Schijfkopie-informatie"
+
+#~ msgid "Invalid publisher '%s': '%s'"
+#~ msgstr "Ongeldige uitgever '%s': '%s'"
+
+#~ msgid "Invalid volume name '%s': '%s'"
+#~ msgstr "Ongeldige stationsnaam '%s': '%s'"
+
+#~ msgid "Is not visible on image"
+#~ msgstr "Is niet zichtbaar op de schijfkopie"
+
+#~ msgid "Is visible on image as '%s'"
+#~ msgstr "Is zichtbaar op de schijfkopie als '%s'"
+
+#~ msgid ""
+#~ "It seems that you have made changes to the ISO but haven't saved them. "
+#~ "Are you sure you want to close it?"
+#~ msgstr ""
+#~ "U heeft veranderingen aangebracht aan het ISO maar deze niet opgeslagen. "
+#~ "Weet u zeker dat u wilt doorgaan met sluiten?"
+
+#~ msgid ""
+#~ "Item selected is not a regular file and cannot be used as a boot record"
+#~ msgstr ""
+#~ "Het gekozen element is geen gangbaar bestand en kan niet dienen als "
+#~ "bootrecord"
+
+#~ msgid "Location: on original image at 0x%llX"
+#~ msgstr "Locatie: op originele schijfkopie bij 0x%llX"
+
+#~ msgid "Location: to be added from '%s'"
+#~ msgstr "Locatie: zal worden toegevoegd vanuit '%s'"
+
+#~ msgid "MDF Images"
+#~ msgstr "MDF-schijfkopieën"
+
+#~ msgid "NRG Images"
+#~ msgstr "NRG-schijfkopieën"
+
+#~ msgid "Name"
+#~ msgstr "Naam"
+
+#~ msgid "New Directory"
+#~ msgstr "Nieuwe map"
+
+#~ msgid "No boot record read from original or set on image"
+#~ msgstr "Geen bootrecord gelezen op origineel of ingesteld op schijfkopie"
+
+#~ msgid "No boot to delete"
+#~ msgstr "Er is geen bootrecord om te verwijderen"
+
+#~ msgid "Open Recent"
+#~ msgstr "Open recent"
+
+#~ msgid "Options"
+#~ msgstr "Opties"
+
+#~ msgid "Please select a file in the ISO browser to use as the boot record"
+#~ msgstr ""
+#~ "Kies a.u.b. een bestand in de ISO-verkenner om te gebruiken als bootrecord"
+
+#~ msgid "Please select no more than one file in the ISO browser"
+#~ msgstr "Kies a.u.b. niet meer dan één bestand in de ISO-verkenner"
+
+#~ msgid "Please wait while I'm adding the selected items..."
+#~ msgstr "De geselecteerde elementen worden toegevoegd..."
+
+#~ msgid "Please wait while I'm extracting the selected files..."
+#~ msgstr "De geselecteerde bestanden worden uitgepakt..."
+
+#~ msgid "Please wait while I'm reading the image..."
+#~ msgstr "De schijfkopie wordt gelezen..."
+
+#~ msgid "Please wait while I'm saving the new image to disk..."
+#~ msgstr "De nieuwe schijfkopie wordt op de schijf opgeslagen..."
+
+#~ msgid "Publisher:"
+#~ msgstr "Uitgever:"
+
+#~ msgid "Remove"
+#~ msgstr "Verwijderen"
+
+#~ msgid "Save File"
+#~ msgstr "Bestand opslaan"
+
+#~ msgid "Save a copy of the boot record"
+#~ msgstr "Sla een kopie van het bootrecord op"
+
+#~ msgid "Scan for duplicate files (slow)"
+#~ msgstr "Zoek naar dubbele bestanden (langzaam)"
+
+#~ msgid "Show _hidden files"
+#~ msgstr "Laat _verborgen bestanden zien"
+
+#~ msgid "Size"
+#~ msgstr "Grootte"
+
+#~ msgid "Size: %d bytes"
+#~ msgstr "Grootte: %d bytes"
+
+#~ msgid ""
+#~ "Skipping directory entry because cannot handle filename longer than 256 "
+#~ "chars"
+#~ msgstr ""
+#~ "Map wordt overgeslagen omdat bestandnamen met meer dan 256 tekens niet "
+#~ "verwerkt kunnen worden"
+
+#~ msgid "Skipping directory entry because stat(%s) failed with %d"
+#~ msgstr "Map wordt overgeslagen omdat 'stat(%s)' mislukte met waarde %d"
+
+#~ msgid "Sort is _case sensitive"
+#~ msgstr "Rangschikking is _hoofdlettergevoelig"
+
+#~ msgid ""
+#~ "The ISO Master window is split in 2 parts:\n"
+#~ " - The top file browser shows files and directories on your machine.\n"
+#~ " - The bottom file browser shows files and directories on the ISO image.\n"
+#~ "\n"
+#~ "To open an existing ISO file click on 'File' and 'Open'. To create a new\n"
+#~ "ISO file click on 'File' and 'New'.\n"
+#~ "\n"
+#~ "To add one or more files or directories to the ISO select them in the "
+#~ "top\n"
+#~ "file browser and click the 'Add to the ISO' button in the middle "
+#~ "toolbar.\n"
+#~ "\n"
+#~ "To extract one or more files or directories from the ISO select them in\n"
+#~ "the bottom file browser and click the 'Extract from ISO' button in the\n"
+#~ "middle toolbar.\n"
+#~ "\n"
+#~ "You can also delete files or directories from the ISO and create new\n"
+#~ "directories both on the ISO and your local filesystem.\n"
+#~ "\n"
+#~ "If you select something in the bottom file browser and right-click on "
+#~ "it,\n"
+#~ "there are several more options available.\n"
+#~ "\n"
+#~ "Once you made all the changes to the new ISO image, click on 'File' and\n"
+#~ "'Save As'. You cannot overwrite the original ISO.\n"
+#~ msgstr ""
+#~ "Het ISO Master-venster is in twee delen opgedeeld:\n"
+#~ " - Het bovenste deel toont de mappen en bestanden op uw computer.\n"
+#~ " - Het onderste deel toont de mappen en bestanden in de ISO-schijfkopie.\n"
+#~ "\n"
+#~ "Om een bestaande ISO-schijfkopie te openen klikt u op 'Bestand' en "
+#~ "vervolgens op 'Openen'.\n"
+#~ "Om een nieuwe ISO-schijfkopie te maken klikt u op 'Bestand' en\n"
+#~ "vervolgens op 'Nieuw'.\n"
+#~ "\n"
+#~ "Om één of meerdere mappen of bestanden toe te voegen aan het ISO,\n"
+#~ "selecteert u de gewenste bestanden op uw computer en klikt u\n"
+#~ "vervolgens op de knop 'Toevoegen aan ISO'.\n"
+#~ "\n"
+#~ "Om één of meerdere bestanden van het ISO naar uw computer uit te\n"
+#~ "pakken, selecteert u de gewenste mappen of bestanden in het onderste\n"
+#~ "gedeelte en klikt u vervolgens op de knop 'Uitpakken vanuit ISO'.\n"
+#~ "\n"
+#~ "U kunt ook mappen en bestanden van het ISO verwijderen en nieuwe\n"
+#~ "mappen aanmaken op zowel het ISO als uw computer.\n"
+#~ "\n"
+#~ "Wanneer u een bestand of map in het onderste gedeelte selecteert en\n"
+#~ "met de rechtermuisknop aanklikt, zijn er aanvullende opties beschikbaar.\n"
+#~ "\n"
+#~ "Wanneer u alle gewenste aanpassingen aan uw nieuwe ISO-schijfkopie\n"
+#~ "voltooid heeft, klikt u op 'Bestand' en vervolgens op 'Opslaan als'.\n"
+#~ "U kunt het originele ISO niet overschrijven.\n"
+
+#~ msgid "Use selected file on image (no emulation)"
+#~ msgstr "Pas gekozen bestand toe op schijfkopie (geen nabootsing)"
+
+#~ msgid "View"
+#~ msgstr "Bekijken"
+
+#~ msgid "View failed, please check Options/Viewer"
+#~ msgstr "Weergeven mislukt, controleer a.u.b. Opties/Kijker"
+
+#~ msgid "Viewer"
+#~ msgstr "Kijker"
+
+#~ msgid "Volume name:"
+#~ msgstr "Stationsnaam:"
+
+#~ msgid ""
+#~ "You will have to close and reopen the ISO for this change to take effect"
+#~ msgstr ""
+#~ "U dient het ISO te sluiten en opnieuw te openen om deze wijziging in "
+#~ "werking te laten treden"
+
+#~ msgid "_Boot Record"
+#~ msgstr "Boot_record"
+
+#~ msgid "_File"
+#~ msgstr "_Bestand"
+
+#~ msgid "_Help"
+#~ msgstr "_Hulp"
+
+#~ msgid "_Options"
+#~ msgstr "_Opties"
+
+#~ msgid "_Sort directories first"
+#~ msgstr "_Sorteer mappen als eerste"
+
+#~ msgid "_Tools"
+#~ msgstr "_Gereedschappen"
+
+#~ msgid "_View"
+#~ msgstr "Be_kijken"
+
+#~ msgid "_Image"
+#~ msgstr "_Schijfkopie"
+
+#~ msgid "_Settings"
+#~ msgstr "I_nstellingen"

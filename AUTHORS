@@ -1,0 +1,362 @@
+Many thanks to all the following people:
+
+Andrew Smith
+http://littlesvr.ca/contact.php
+2005 - 2019
+- maintainer
+
+Eric Lathrop
+http://ericlathrop.com/
+- original author
+- 'eject when finished' feature
+
+Gregory Margo
+- Shorten requested filenames that are longer than the filesystem can handle
+- Work around cdparanoia's filename length limits
+- Fixed bug where multiple CDDB entries would only show once
+- Improved the refresh/lookup system to work much better with more complicated CDs
+- Fixed FLAC progress scanner. Both to make the percentage more reliable and to prevent a possible crash
+- Added feature to select/deselect all tracks by clicking on rip checkbox header
+- Fixed autocomplete file loading
+- Fixed several potential buffer overflow bugs
+- Fixed some minor memory leaks
+- Fixed race condition during abort
+- Improved completion percentage feedback
+- Added feature to make the artist and title columns resizable
+- Remove 'single genre' code that's been unused since 2010.
+- Added features to automatically fix some common mistakes in CDDB entries.
+- Fixed the wavpack and mpc encoders to include APEv2 metadata.
+- Allow changing the first track number and the width of the track number in the filename.
+(A few patches were mistakenly attributed to "Gregory Montego" and "Gergory Margo")
+
+Andreas Ronnquist
+- Moved the config file to ~/.config/asunder without breaking old configs
+- Moved the autocomplete files to ~/.cache/asunder without breaking old caches
+
+Fraser Tweedale
+- FreeBSD port
+
+Dave Tyson
+- NetBSD port
+
+Lorraine Reed, aka Lightning Rose
+http://www.lightning-rose.com/
+- Editable genre feature to version 1.9.2
+- Added invalid MS file chars to trim_chars()
+
+Radu Potop
+http://wooptoo.com/
+- The new Asunder icon
+
+Pader Reszo
+- Made the about description translatable
+
+Cyril Brulebois
+- A kFreeBSD fix.
+
+Richard Gill
+- Support for XDG_CONFIG_HOME
+- Support for XDG_CACHE_HOME
+
+Hiroyuki Ito
+- Support for autocompletion in artist/album/genre fields.
+
+Jonathan 'theJPster' Pallant
+- Move from neroAacEnc to fdkaac.
+- Tag AAC files using neroAacTag.
+
+Micah Lindstrom
+- Support for invalid filesystem characters in metadata.
+
+Tim Allen
+- Fix to make the MusicBrainz CDDB gateway work with Asunder.
+
+Tudor
+- Desktop file trick to add Asunder to the list of audio CD apps in Gnome.
+
+Felix Braun
+- Support for encoding into OPUS.
+
+Nicolas Leveille
+- Fix for: don't reset the track info edited by the user by doing an unnecessary CDDB lookup.
+
+Pierre Lestringant (whz)
+- Fixed musepack and aac playlist generation
+
+Matthew (mw)
+- Add the ALBUMARTIST tag to flac files when "Single artist" is not checked.
+
+Antony Gelberg
+- Fixed when the CD is ejected to avoid problems before a full rip/encode cycle is completed.
+
+Tom Bailey
+- Added support for joining artist and title in title field.
+
+Packages:
+
+Toni Graffy
+Maintainer of many SuSE packages at PackMan
+- SuSE packages of Asunder, versions 0.1 - 1.6
+
+Joao Pinto
+- 64bit Debian and Ubuntu packages of Asunder, versions 1.0.1 - 1.0.2, 1.6
+
+Trent Weddington
+http://rtfm.insomnia.org/~qg/
+- Debian packages of Asunder, versions 0.8 - 1.0.1
+
+Daniel Baumann
+- Debian maintainer for Asunder, version 1.6.2
+
+Marcin Zajaczkowski (Szpak)
+http://timeoff.wsisiz.edu.pl/rpms.html
+- Fedora packages of Asunder, versions 0.8.1 - 1.6
+
+Adam Williamson
+http://www.happyassassin.net/
+- Mandriva packages of Asunder, versions 0.9 - 1.6
+
+Tom Nardi
+- Slackware packages of Asunder, versions 0.8.1 - 1.6
+
+vktgz
+http://www.vktgz.homelinux.net/
+- Gentoo ebuilds for Asunder, versions 0.8 - 0.8.1, 1.6
+
+Ronald van Haren
+- Arch package of Asunder, versions 1.5 - 1.6
+
+Sebastien Piccand
+- Arch packages of Asunder, versions 0.8.1 - 1.0.2
+
+Alexey Rusakov
+- ALT packages of Asunder, versions 0.8.1 - 1.5
+
+Fraser Tweedale
+- FreeBSD ports of Asunder, versions 0.8.1 - 0.9
+
+Philip Muller
+- Paldo package of Asunder, version 0.8.1
+
+Christophe Lincoln
+- Slitaz package of Asunder, version 1.0.2
+
+coolpup
+- Puppy package of Asunder, version 1.6.2
+
+
+Translators:
+
+Mohamed Magdy
+http://wiki.arabeyes.org/Translation_requests
+- ar (Arabic) translation of Asunder version 1.9
+
+Muhammad Ali Makki
+http://makki.urducoder.com/
+- ar (Arabic) translation of Asunder version 2.0
+
+Ihar Hrachyshka
+- be (Belarusian) translation of Asunder versions 1.0.2 - 1.5
+
+Emil Krumov
+- bg (Bulgarian) translation of Asunder versions 1.0.2 - 2.2
+
+Rajib Lochan Dhibar
+- bn_IN (Bengali / India) translation of Asunder version 2.3
+
+Davor Buday
+- bs_BA (Bosnian / Bosnia and Herzegovina) translation of Asunder version 2.1
+
+Siegfried-Angel Gevatter Pujals
+- ca (Catalan) translation of Asunder versions 0.8.1 - 1.9
+
+Toni Estevez
+- ca (Catalan) translation of Asunder version 2.8
+
+Schmaki
+- cs (Czeck) translation of Asunder versions 0.8 - 1.0, 1.9
+
+Petr Simacek
+- cs (Czeck) translation of Asunder versions 2.2, 2.5
+
+Joe Hansen
+- da (Danish) translation of Asunder version 1.9
+
+Joe Dalton
+- da (Danish) translation of Asunder version 2.7
+
+Rene Schmidt
+- de (German) translation of Asunder versions 0.8 - 1.5
+
+Christian Faulhammer
+- de (German) translation of Asunder version 2.0
+
+Mike Kranidis
+- el (Greek) translation of Asunder versions 0.8 - 1.0, 1.9
+
+George Vlahavas
+- el (Greek) translation of Asunder version 1.5
+
+Formiko
+- eo (Esperanto) translation of Asunder version 2.1
+
+Juan Garcia-Murga Monago
+- es (Spanish) translation of Asunder versions 0.8 - 1.9
+
+Marco Antonio
+- es (Spanish) translation of Asunder versions 1.9.3 - 2.2
+
+Esteban Samela
+- es (Spanish) translation of Asunder version 2.4
+
+Guillermo Gras
+- eu (Basque) translation of Asunder version 2.0
+
+Eero Salokannel
+- fi (Finnish) translation of Asunder versions 0.8 - 2.2
+
+janikinnunen
+- fi (Finnish) translation of Asunder versions 2.9.3
+
+Christophe Legras
+- fr (French) translation of Asunder versions 0.8 - 1.9
+
+Fabrice Le Goff
+- fr (French) translation of Asunder version 1.6
+
+Clement Raievsky
+- fr (French) translation of Asunder versions 2.1 - 2.2
+
+Miguel Anxo Bouzada
+- gl (Galician) translation of Asunder version 2.2
+
+Genghis Khan
+- he (Hebrew) translation of Asunder version 2.2
+
+Peter Polonkai
+- hu (Hungarian) translation of Asunder versions 0.8 - 1.9
+
+Petar Kulic
+- hr (Croatian) translation of Asunder versions 1.9-2.8
+
+Pader Rezso
+- hu (Hungarian) translation of Asunder versions 1.9.2 - 2.3
+
+Valerio Guaglianone
+- it (Italian) translation of Asunder versions 0.8 - 0.8.1, 1.6 - 1.9
+
+Fabio Vergnani
+- it (Italian) translation of Asunder version 1.0
+
+Fabio Boccaletti
+- it (Italian) translation of Asunder version 2.3
+
+UTUMI Hirosi
+- ja (Japanese) translation of Asunder versions 1.0 - 1.5
+
+Hiroyuki Ito
+- ja (Japanese) translation of Asunder version 2.1
+
+Kristaps Kulis
+- lv (Latvian) translation of Asunder version 1.6
+
+Robert Groenning
+- nb (Norwegian Bokmal) translation of Asunder version 0.8
+
+Aka Sikrom
+- nb (Norwegian Bokmal) translation of Asunder versions 2.5 - 2.8
+
+Wolven
+- nb (Norwegian Bokmal) translation of Asunder version 1.6
+
+Stephen Brandt
+- nl (Dutch) translation of Asunder versions 0.8 - 1.0, 1.9
+
+Kristof Bal
+- nl (Dutch) translation of Asunder versions 1.0.2 - 1.5
+
+Pjotr Vertaalt
+- nl (Dutch) translation of Asunder version 2.8
+
+Robert Groenning
+- nn (Norwegian Nynorsk) translation of Asunder version 0.8
+
+Kevin Brubeck Unhammer
+- nn (Norwegian Nynorsk) translation of Asunder version 2.7
+
+Marcin Gasiorowski
+- pl (Polish) translation of Asunder versions 1.0 - 1.9
+
+Piotr Strebski
+- pl (Polish) translation of Asunder version 2.8
+
+Antonio Sousa
+- pt (Portuguese) translation of Asunder version 1.5
+
+Sergio Marques
+- pt (Portuguese) translation of Asunder version 1.9
+
+Flipe Augusto
+- pt_BR (Portuguese/Brazil) translation of Asunder versions 0.8.1 - 1.9
+
+Sergio Brandao Cipolla
+- pt_BR (Portuguese/Brazil) translation of Asunder version 1.9.1
+
+Pedro Henrique
+- pt_BR (Portuguese/Brazil) translation of Asunder version 2.1
+
+Neliton Pereira Jr
+- pt_BR (Portuguese/Brazil) translation of Asunder version 2.2
+
+Paulo Roberto de Oliveira Castro
+- pt_BR (Portuguese/Brazil) translation of Asunder version 2.2
+
+Alexandre Prokoudine
+- ru (Russian) translation of Asunder version 1.9.2
+
+Alexey Sivakov
+- ru (Russian) translation of Asunder versions 0.8 - 1.0, 1.9 - 2.7
+
+Evgenii Terechkov
+- ru (Russian) translation of Asunder versions 1.0.2 - 1.5
+
+Tomas Vadina
+- sk (Slovak) translation of Asunder version 1.6.3
+
+Uros Golob
+- sl (Slovenian) translation of Asunder versions 1.9 - 2.1
+
+Besnik Bleta
+- sq (Albanian) translation of Asunder versions 0.8 - 1.9
+
+Milan Puzic
+- sr (Serbian) translation of Asunder versions 1.0, 1.9
+
+Milan Puzic
+- sr@latin (Serbian/latin) translation of Asunder versions 1.0, 1.9
+
+Daniel Nylander
+- sv (Swedish) translation of Asunder versions 0.8 - 1.9
+
+Andreas Ronnquist
+- sv (Swedish) translation of Asunder versions 2.2-2.9
+
+Savas Sen
+- tr (Turkish) translation of Asunder version 1.9
+
+Yilmaz Hanemer
+- tr (Turkish) translation of Asunder version 2.8
+
+Muhammad Ali Makki
+http://makki.urducoder.com/
+- ur_PK (Urdu/Pakistan) translation of Asunder version 2.0
+
+Tiansworld
+- zh_CN (Simplified Chineese) translation of Asunder version 2.3
+
+Jeff Bai
+- zh_CN (Simplified Chineese) translation of Asunder version 2.5
+
+Cheng-Wei Chien
+- zh_TW (Chineese/Taiwan) translation of Asunder versions 0.8 - 1.9
+

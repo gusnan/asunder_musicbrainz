@@ -1,0 +1,15 @@
+See https://littlesvr.ca/bugs/buglist.cgi?component=All&list_id=705&product=Asunder&resolution=---
+
+Tests to run before a release
+=============================
+- try to run with an older config file
+- comment out #define DEBUG
+- update version in about box and configure.in
+- ./autogen.sh
+- update authors, packagers, translators
+- update changelog
+- update AUTHORS
+- cd po && make update-po
+- make dist-bzip2
+- uninstall, extract, compile, install and run
+- add version in bugzilla

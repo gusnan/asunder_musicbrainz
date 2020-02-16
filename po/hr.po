@@ -1,0 +1,519 @@
+# Croatian translation for Asunder
+# Copyright (C) 2016
+# This file is distributed under the same license as the Asunder package.
+# Petar Kulić <cooleech@gmail.com>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 2.8\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-10-21 08:12-0400\n"
+"PO-Revision-Date: 2016-01-08 10:11+0100\n"
+"Last-Translator: Petar Kulić <cooleech@gmail.com>\n"
+"Language-Team: Hrvatski <LL@li.org>\n"
+"Language: Croatian\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural= n!=1;\n"
+
+#: ../src/main.c:136 ../src/interface.c:269
+msgid "Rip"
+msgstr "Ripaj"
+
+#: ../src/main.c:146
+msgid "Track"
+msgstr "Zapis"
+
+#: ../src/main.c:154
+msgid "Artist"
+msgstr "Izvođač"
+
+#: ../src/main.c:162 ../src/main.c:170
+msgid "Title"
+msgstr "Naslov"
+
+#: ../src/main.c:178
+msgid "Time"
+msgstr "Vrijeme"
+
+#: ../src/main.c:204
+msgid ""
+"'cdparanoia' was not found in your path. Asunder requires cdparanoia to rip "
+"CDs."
+msgstr ""
+"'cdparanoia' nije pronađen na vašem sustavu. Asunderu treba cdparanoia kako "
+"biripao CD-e."
+
+#. Debug print add time last taken by the open() call.
+#. snprintf(msgStr, 1024, "%s [open %.1lf sec]",
+#. _("<b>Checking disc...</b>"), open_diff_time / 1E6);
+#. This is to deal with the fact that the signal below will take up to
+#. a second to get processed in refresh_thread() which will call check_disk()
+#. which will set the label to the same thing at the start.
+#: ../src/main.c:249 ../src/main.c:274 ../src/main.c:874
+msgid "<b>Checking disc...</b>"
+msgstr ""
+
+#: ../src/main.c:543
+msgid "<b>Getting disc info from the internet...</b>"
+msgstr "<b>Skidam info o disku s interneta...</b>"
+
+#: ../src/main.c:604
+msgid "<b>Reading disc...</b>"
+msgstr ""
+
+#: ../src/callbacks.c:58 ../src/callbacks.c:292 ../src/callbacks.c:320
+#: ../src/callbacks.c:329 ../src/callbacks.c:338 ../src/callbacks.c:348
+#: ../src/interface.c:667 ../src/interface.c:754 ../src/interface.c:863
+#: ../src/interface.c:999
+#, c-format
+msgid "%dKbps"
+msgstr "%dKbps"
+
+#: ../src/callbacks.c:701
+msgid "No CD is inserted. Please insert a CD into the CD-ROM drive."
+msgstr "Nema CD-a. Molim, ubacite CD u optički uređaj."
+
+#: ../src/callbacks.c:720 ../src/callbacks.c:746 ../src/callbacks.c:771
+#: ../src/callbacks.c:796 ../src/callbacks.c:821 ../src/callbacks.c:847
+#: ../src/callbacks.c:872 ../src/callbacks.c:897
+#, c-format
+msgid ""
+"%s was not found in your path. Asunder requires it to create %s files. All "
+"%s functionality is disabled."
+msgstr ""
+"%s nije pronađen na sustavu. Asunderu je potreban kako bi stvorio %s "
+"datoteke. Sva%s funkcionalnost je onemogućena."
+
+#: ../src/callbacks.c:987
+msgid "Select all for ripping"
+msgstr "Označi sve za ripanje"
+
+#: ../src/callbacks.c:993
+msgid "Deselect all for ripping"
+msgstr "Odznači sve za ripanje"
+
+#: ../src/callbacks.c:999
+msgid "Capitalize Artists & Titles"
+msgstr ""
+
+#: ../src/callbacks.c:1029
+msgid "Swap Artist <=> Title"
+msgstr ""
+
+#: ../src/interface.c:94
+msgid "CDDB Lookup"
+msgstr "CDDB pretraga"
+
+#: ../src/interface.c:144
+msgid "Disc:"
+msgstr "Disk"
+
+#: ../src/interface.c:150
+msgid "Album Artist:"
+msgstr "Izvođač albuma:"
+
+#: ../src/interface.c:157
+msgid "Album Title:"
+msgstr "Naslov albuma:"
+
+#: ../src/interface.c:164
+msgid "Single Artist"
+msgstr "Jedan izvođač"
+
+#: ../src/interface.c:176
+msgid "First track number:"
+msgstr ""
+
+#: ../src/interface.c:189
+msgid "Track number width in filename:"
+msgstr ""
+
+#: ../src/interface.c:215
+msgid "Genre / Year:"
+msgstr "Vrsta / Godina:"
+
+#: ../src/interface.c:418
+msgid "Preferences"
+msgstr "Postavke"
+
+#: ../src/interface.c:435 ../src/interface.c:441
+msgid "Destination folder"
+msgstr "Odredišni folder"
+
+#: ../src/interface.c:445
+msgid "Create M3U playlist"
+msgstr "Napravi M3U listu"
+
+#: ../src/interface.c:453
+msgid "CD-ROM device: "
+msgstr "Optički uređaj: "
+
+#: ../src/interface.c:462
+msgid ""
+"Default: /dev/cdrom\n"
+"Other example: /dev/hdc\n"
+"Other example: /dev/sr0"
+msgstr ""
+"Uobičajeno: /dev/cdrom\n"
+"Drugi primjer: /dev/hdc\n"
+"Drugi primjer: /dev/sr0"
+
+#: ../src/interface.c:466
+msgid "Eject disc when finished"
+msgstr "Izbaci disk po završetku"
+
+#: ../src/interface.c:474
+msgid "General"
+msgstr "Općenito"
+
+#: ../src/interface.c:494
+msgid ""
+"%A - Artist\n"
+"%L - Album\n"
+"%N - Track number (2-digit)\n"
+"%Y - Year (4-digit or \"0\")\n"
+"%T - Song title"
+msgstr ""
+"%A - Izvođač\n"
+"%L - Album\n"
+"%N - Redni broj (dvoznamenkasti)\n"
+"%Y - Godina (četveroznamenkasta ili \"0\")\n"
+"%T - Naslov pjesme"
+
+#: ../src/interface.c:499
+#, c-format
+msgid "%G - Genre"
+msgstr "%G - Vrsta"
+
+#: ../src/interface.c:514
+msgid "Album directory: "
+msgstr "Direktorij albuma: "
+
+#: ../src/interface.c:521 ../src/prefs.c:776
+msgid "Playlist file: "
+msgstr "Datoteka liste: "
+
+#: ../src/interface.c:528 ../src/prefs.c:788 ../src/prefs.c:798
+msgid "Music file: "
+msgstr "Glazbena datoteka: "
+
+#: ../src/interface.c:542
+msgid ""
+"This is relative to the destination folder (from the General tab).\n"
+"Can be blank.\n"
+"Default: %A - %L\n"
+"Other example: %A/%L"
+msgstr ""
+"Ovo je putanja do odredišnog foldera (prema karitci Općenito).\n"
+"Može biti prazno.\n"
+"Uobičajeno: %A - %L\n"
+"Drugi primjer: %A/%L"
+
+#: ../src/interface.c:554
+msgid ""
+"This will be stored in the album directory.\n"
+"Can be blank.\n"
+"Default: %A - %L"
+msgstr ""
+"Ovo će biti pohranjeno u direktoriju albuma.\n"
+"Može biti prazno.\n"
+"Uobičajeno: %A - %L"
+
+#: ../src/interface.c:565
+msgid ""
+"This will be stored in the album directory.\n"
+"Cannot be blank.\n"
+"Default: %A - %T\n"
+"Other example: %N - %T"
+msgstr ""
+"Ovo će biti pohranjeno u direktoriju albuma.\n"
+"Ne može biti prazno.\n"
+"Uobičajeno: %A - %T\n"
+"Drugi primjer: %N - %T"
+
+#: ../src/interface.c:570
+msgid "Filename formats"
+msgstr "Format imena datoteka"
+
+#: ../src/interface.c:575
+msgid "Allow changing first track number"
+msgstr ""
+
+#: ../src/interface.c:580
+msgid "Filenames"
+msgstr "Imena datoteka"
+
+#. WAV
+#. frame3 = gtk_frame_new (NULL);
+#. gtk_frame_set_shadow_type(GTK_FRAME(frame3), GTK_SHADOW_IN);
+#. gtk_widget_show (frame3);
+#. gtk_box_pack_start (GTK_BOX (vbox), frame3, FALSE, FALSE, 0);
+#. alignment8 = gtk_alignment_new (0.5, 0.5, 1, 1);
+#. gtk_widget_show (alignment8);
+#. gtk_container_add (GTK_CONTAINER (frame3), alignment8);
+#. gtk_alignment_set_padding (GTK_ALIGNMENT (alignment8), 2, 2, 12, 2);
+#. vbox2 = gtk_vbox_new (FALSE, 0);
+#. gtk_widget_show (vbox2);
+#. gtk_container_add (GTK_CONTAINER (alignment8), vbox2);
+#: ../src/interface.c:614
+msgid "WAV (uncompressed)"
+msgstr "WAV (bez kompresije)"
+
+#: ../src/interface.c:635
+msgid "Variable bit rate (VBR)"
+msgstr "Varijabilna gustoća bitova (VBR)"
+
+#: ../src/interface.c:643
+msgid "Better quality for the same size."
+msgstr "Bolja kvaliteta za istu veličinu."
+
+#: ../src/interface.c:649 ../src/interface.c:736 ../src/interface.c:847
+#: ../src/interface.c:933 ../src/interface.c:981
+msgid "Bitrate"
+msgstr "Gustoća bitova"
+
+#: ../src/interface.c:664 ../src/interface.c:751
+msgid ""
+"Higher bitrate is better quality but also bigger file. Most people use "
+"192Kbps."
+msgstr ""
+"Veća gustoća bitova daje bolju kvalitetu ali i veću datoteku. Većina ljudi "
+"koristi 192Kbps."
+
+#: ../src/interface.c:673
+msgid "MP3 (lossy compression)"
+msgstr "MP3 (kompresija uz gubitke)"
+
+#: ../src/interface.c:696
+msgid "Quality"
+msgstr "Kvaliteta"
+
+#: ../src/interface.c:707
+msgid "Higher quality means bigger file. Default is 6."
+msgstr "Veća kvaliteta znači veću datoteku. Uobičajeno je 6."
+
+#: ../src/interface.c:709
+msgid "OGG Vorbis (lossy compression)"
+msgstr "OGG Vorbis (kompresija uz gubitke)"
+
+#: ../src/interface.c:760
+#, fuzzy
+msgid "AAC (lossy compression)"
+msgstr "MP3 (kompresija uz gubitke)"
+
+#: ../src/interface.c:783 ../src/interface.c:899 ../src/interface.c:1038
+msgid "Compression level"
+msgstr "Razina kompresije"
+
+#: ../src/interface.c:794 ../src/interface.c:1051
+msgid "This does not affect the quality. Higher number means smaller file."
+msgstr "Ovo ne utječe na kvalitetu. Veći broj znači manju datoteku."
+
+#: ../src/interface.c:796
+msgid "FLAC (lossless compression)"
+msgstr "FLAC (kompresija bez gubitaka)"
+
+#: ../src/interface.c:815
+msgid "More formats"
+msgstr "Više formata"
+
+#: ../src/interface.c:861
+msgid ""
+"Higher bitrate is better quality but also bigger file. Most people use "
+"160Kbps."
+msgstr ""
+"Veća gustoća bitova daje bolju kvalitetu ali i veću datoteku. Većina ljudi "
+"koristi 160Kbps."
+
+#: ../src/interface.c:869
+msgid "OPUS (lossy compression)"
+msgstr "OPUS (kompresija uz gubitke)"
+
+#: ../src/interface.c:912
+msgid ""
+"This does not affect the quality. Higher number means smaller file. Default "
+"is 1 (recommended)."
+msgstr ""
+"Ovo ne utječe na kvalitetu. Veći broj znači manju datoteku. Uobičajeno je 1 "
+"(preporučeno)."
+
+#: ../src/interface.c:918
+msgid "Hybrid compression"
+msgstr "Hibridna kompresija"
+
+#: ../src/interface.c:927
+msgid ""
+"The format is lossy but a correction file is created for restoring the "
+"lossless original."
+msgstr ""
+"Format ima gubitaka ali datoteka oporavka je stvorena da bi se vratila "
+"originalna kvaliteta."
+
+#: ../src/interface.c:997
+msgid "Higher bitrate is better quality but also bigger file."
+msgstr "Veća gustoća bitova daje bolju kvalitetu ali i veću datoteku."
+
+#: ../src/interface.c:1005
+msgid "Musepack (lossy compression)"
+msgstr "Musepack (kompresija uz gubitke)"
+
+#: ../src/interface.c:1053
+msgid "Monkey's Audio (lossless compression)"
+msgstr "Monkey's Audio (kompresija bez gubitaka)"
+
+#. END MONKEY
+#. ~ expander = gtk_expander_new(_("Proprietary encoders"));
+#. ~ gtk_widget_show (expander);
+#. ~ gtk_box_pack_start (GTK_BOX (vbox), expander, FALSE, FALSE, 0);
+#. ~ GLADE_HOOKUP_OBJECT (prefs, expander, "proprietary_formats_expander");
+#. ~ hiddenbox = gtk_vbox_new (FALSE, 0);
+#. ~ gtk_widget_show (hiddenbox);
+#. ~ gtk_container_add (GTK_CONTAINER (expander), hiddenbox);
+#: ../src/interface.c:1071
+msgid "Encode"
+msgstr "Enkodiraj"
+
+#: ../src/interface.c:1105
+msgid "Get disc info from the internet automatically"
+msgstr "Automatski skini info o disku s interneta"
+
+#: ../src/interface.c:1113 ../src/interface.c:1159
+msgid "Server: "
+msgstr "Poslužitelj: "
+
+#: ../src/interface.c:1123
+msgid "The CDDB server to get disc info from (default is freedb.freedb.org)"
+msgstr "CDDB poslužitelj za info o disku (uobičajeno je freedb.freedb.org)"
+
+#: ../src/interface.c:1129 ../src/interface.c:1172
+msgid "Port: "
+msgstr "Port: "
+
+#: ../src/interface.c:1139
+msgid "The CDDB server port (default is 8880)"
+msgstr "Port CDDB poslužitelja (uobičajeno je 8880)"
+
+#: ../src/interface.c:1146
+msgid "Use an HTTP proxy to connect to the internet"
+msgstr "Koristi HTTP proxy za spajanje na internet"
+
+#: ../src/interface.c:1194
+msgid "Artist/Title separator: "
+msgstr ""
+
+#: ../src/interface.c:1205
+msgid "Log to /var/log/asunder.log"
+msgstr "Zapis u /var/log/asunder.log"
+
+#: ../src/interface.c:1210
+msgid "Faster ripping (no error correction)"
+msgstr "Brže ripanje (bez ispravki grešaka)"
+
+#: ../src/interface.c:1219
+msgid "Advanced"
+msgstr "Napredno"
+
+#: ../src/interface.c:1292 ../src/interface.c:1328
+msgid "Ripping"
+msgstr "Ripanje"
+
+#: ../src/interface.c:1321
+msgid "Total progress"
+msgstr "Ukupan napredak"
+
+#: ../src/interface.c:1335
+msgid "Encoding"
+msgstr "Enkodiram"
+
+#: ../src/interface.c:1923
+#, fuzzy
+msgid ""
+"An application to save tracks from an Audio CD \n"
+"as WAV, MP3, OGG, FLAC, Wavpack, Opus, Musepack, Monkey's Audio, and/or AAC "
+"files."
+msgstr ""
+"Aplikacija za spremanje zapisa s Audio CD-a \n"
+"u WAV, MP3, OGG, FLAC, Opus, Wavpack, Musepack, Monkey's Audio, i/ili AAC "
+"datoteke."
+
+#: ../src/interface.c:1965
+#, c-format
+msgid "%d file created successfully"
+msgid_plural "%d files created successfully"
+msgstr[0] "%d datoteka je uspješno zapisana"
+msgstr[1] "%d datoteke su uspješno zapisane"
+
+#: ../src/interface.c:1974
+#, c-format
+msgid "There was an error creating %d file"
+msgid_plural "There was an error creating %d files"
+msgstr[0] "Nastala je greška prilikom stvaranja %d datoteke"
+msgstr[1] "Nastala je greška prilikom stvaranja %d datoteka"
+
+#: ../src/prefs.c:775 ../src/prefs.c:787
+#, c-format
+msgid "Invalid characters in the '%s' field"
+msgstr "Nedozvoljen znak u '%s' polju"
+
+#: ../src/prefs.c:797
+#, c-format
+msgid "'%s' cannot be empty"
+msgstr "'%s' ne može biti prazno"
+
+#: ../src/prefs.c:812
+msgid "Invalid proxy port number"
+msgstr "Nevažeći broj proxy porta"
+
+#: ../src/prefs.c:825
+msgid "Invalid cddb server port number"
+msgstr "Nevažeći broj porta cddb poslužitelja"
+
+#: ../src/support.c:47
+msgid "Overwrite?"
+msgstr "Prepisati?"
+
+#: ../src/support.c:60
+#, c-format
+msgid "The file '%s' already exists. Do you want to overwrite it?\n"
+msgstr "Datoteka '%s' već postoji. Želite li pisati preko nje?\n"
+
+#: ../src/support.c:66
+msgid "Remember the answer for _all the files made from this CD"
+msgstr "Zapamti odgovor za _sve datoteke s ovog diska"
+
+#: ../src/threads.c:188
+msgid ""
+"No ripping/encoding method selected. Please enable one from the "
+"'Preferences' menu."
+msgstr ""
+"Nema odabrane metode za ripanje/enkodiranje. Molim odaberite jednu u meniju "
+"'Postavke'."
+
+#: ../src/threads.c:220
+msgid ""
+"No tracks were selected for ripping/encoding. Please select at least one "
+"track."
+msgstr ""
+"Nema odabranih zapisa za ripanje/enkodiranje. Molim odaberite bar jedan "
+"zapis."
+
+#: ../src/threads.c:1298 ../src/threads.c:1300 ../src/threads.c:1304
+msgid "Waiting..."
+msgstr "Čekam..."
+
+#~ msgid "Proprietary encoders"
+#~ msgstr "Vlasnički enkoderi"
+
+#~ msgid "Higher quality means bigger file. Default is 60."
+#~ msgstr "Veća kvaliteta znači veću datoteku. Uobičajeno je 60."
+
+#~ msgid "AAC (lossy compression, Nero encoder)"
+#~ msgstr "AAC (kompresija uz gubitke, Nero enkoder)"
+
+#~ msgid "Genre"
+#~ msgstr "Vrsta"
+
+#~ msgid "Single Genre"
+#~ msgstr "Jedna vrsta"

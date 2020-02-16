@@ -1,0 +1,530 @@
+# translation of cs.po_[XwND8b].po to
+# Czech translation for Asunder.
+# This file is distributed under the same license as the Asunder package.
+#
+# Schmaki <s@seznam.cz>, 2007.
+# Roman Smakal <s@seznam.cz>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: cs.po_[XwND8b]\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-10-21 08:12-0400\n"
+"PO-Revision-Date: 2014-03-19 10:33+0100\n"
+"Last-Translator: Petr Šimáček <petr.simacek@gmail.com>\n"
+"Language-Team: Czech <kde-i18n-doc@kde.org>\n"
+"Language: cs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural= n!=1;\n"
+"X-Generator: Lokalize 1.0\n"
+
+#: ../src/main.c:136 ../src/interface.c:269
+msgid "Rip"
+msgstr "Ripovat"
+
+#: ../src/main.c:146
+msgid "Track"
+msgstr "Stopa"
+
+#: ../src/main.c:154
+msgid "Artist"
+msgstr "Umělec"
+
+#: ../src/main.c:162 ../src/main.c:170
+msgid "Title"
+msgstr "Název"
+
+#: ../src/main.c:178
+msgid "Time"
+msgstr "Čas"
+
+#: ../src/main.c:204
+msgid ""
+"'cdparanoia' was not found in your path. Asunder requires cdparanoia to rip "
+"CDs."
+msgstr ""
+"'cdparanoia' nebyl nalezen v proměnné $PATH. Asunder potřebuje program "
+"cdparanoia, aby mohl ripovat CD."
+
+#. Debug print add time last taken by the open() call.
+#. snprintf(msgStr, 1024, "%s [open %.1lf sec]",
+#. _("<b>Checking disc...</b>"), open_diff_time / 1E6);
+#. This is to deal with the fact that the signal below will take up to
+#. a second to get processed in refresh_thread() which will call check_disk()
+#. which will set the label to the same thing at the start.
+#: ../src/main.c:249 ../src/main.c:274 ../src/main.c:874
+msgid "<b>Checking disc...</b>"
+msgstr ""
+
+#: ../src/main.c:543
+msgid "<b>Getting disc info from the internet...</b>"
+msgstr "<b>Získávání informací o disku z internetu</b>"
+
+#: ../src/main.c:604
+msgid "<b>Reading disc...</b>"
+msgstr ""
+
+#: ../src/callbacks.c:58 ../src/callbacks.c:292 ../src/callbacks.c:320
+#: ../src/callbacks.c:329 ../src/callbacks.c:338 ../src/callbacks.c:348
+#: ../src/interface.c:667 ../src/interface.c:754 ../src/interface.c:863
+#: ../src/interface.c:999
+#, c-format
+msgid "%dKbps"
+msgstr "%dKbps"
+
+#: ../src/callbacks.c:701
+msgid "No CD is inserted. Please insert a CD into the CD-ROM drive."
+msgstr "Není vloženo CD. Prosím vložte CD-ROM do mechaniky."
+
+#: ../src/callbacks.c:720 ../src/callbacks.c:746 ../src/callbacks.c:771
+#: ../src/callbacks.c:796 ../src/callbacks.c:821 ../src/callbacks.c:847
+#: ../src/callbacks.c:872 ../src/callbacks.c:897
+#, c-format
+msgid ""
+"%s was not found in your path. Asunder requires it to create %s files. All "
+"%s functionality is disabled."
+msgstr ""
+"%s nebyl nalezen v proměnné $PATH. Asunder ho potřebuje pro vytvoření "
+"souborů %s. Všechna funkcionalita %s je zakázána."
+
+#: ../src/callbacks.c:987
+msgid "Select all for ripping"
+msgstr "Vybrat vše k ripování"
+
+#: ../src/callbacks.c:993
+msgid "Deselect all for ripping"
+msgstr "Zrušit výběr všeho pro ripování"
+
+#: ../src/callbacks.c:999
+msgid "Capitalize Artists & Titles"
+msgstr ""
+
+#: ../src/callbacks.c:1029
+msgid "Swap Artist <=> Title"
+msgstr ""
+
+#: ../src/interface.c:94
+msgid "CDDB Lookup"
+msgstr "Vyhledat v databázi CD"
+
+#: ../src/interface.c:144
+msgid "Disc:"
+msgstr "Disk:"
+
+#: ../src/interface.c:150
+msgid "Album Artist:"
+msgstr "Umělec alba:"
+
+#: ../src/interface.c:157
+msgid "Album Title:"
+msgstr "Název alba:"
+
+#: ../src/interface.c:164
+msgid "Single Artist"
+msgstr "Umělec"
+
+#: ../src/interface.c:176
+msgid "First track number:"
+msgstr ""
+
+#: ../src/interface.c:189
+msgid "Track number width in filename:"
+msgstr ""
+
+#: ../src/interface.c:215
+msgid "Genre / Year:"
+msgstr "Styl / Rok"
+
+#: ../src/interface.c:418
+msgid "Preferences"
+msgstr "Nastavení"
+
+#: ../src/interface.c:435 ../src/interface.c:441
+msgid "Destination folder"
+msgstr "Cílový adresář"
+
+#: ../src/interface.c:445
+msgid "Create M3U playlist"
+msgstr "Vytvořit playlist M3U"
+
+#: ../src/interface.c:453
+msgid "CD-ROM device: "
+msgstr "Zařízení CD-ROM: "
+
+#: ../src/interface.c:462
+msgid ""
+"Default: /dev/cdrom\n"
+"Other example: /dev/hdc\n"
+"Other example: /dev/sr0"
+msgstr ""
+"Výchozí: /dev/cdrom\n"
+"Další příklad: /dev/hdc\n"
+"Další příklad: /dev/sr0"
+
+#: ../src/interface.c:466
+msgid "Eject disc when finished"
+msgstr "Vysunout disk po dokončení"
+
+#: ../src/interface.c:474
+msgid "General"
+msgstr "Hlavní"
+
+#: ../src/interface.c:494
+msgid ""
+"%A - Artist\n"
+"%L - Album\n"
+"%N - Track number (2-digit)\n"
+"%Y - Year (4-digit or \"0\")\n"
+"%T - Song title"
+msgstr ""
+"%A - Umělec\n"
+"%L - Album\n"
+"%N - Číslo stopy (dvoumístné)\n"
+"%Y - Rok (4-digit nebo \"0\")\n"
+"%T - Název stopy"
+
+#: ../src/interface.c:499
+#, c-format
+msgid "%G - Genre"
+msgstr "%G - Styl"
+
+#: ../src/interface.c:514
+msgid "Album directory: "
+msgstr "Adresář alba: "
+
+#: ../src/interface.c:521 ../src/prefs.c:776
+msgid "Playlist file: "
+msgstr "Soubor seznamu skladeb: "
+
+#: ../src/interface.c:528 ../src/prefs.c:788 ../src/prefs.c:798
+msgid "Music file: "
+msgstr "Hudební soubor: "
+
+#: ../src/interface.c:542
+msgid ""
+"This is relative to the destination folder (from the General tab).\n"
+"Can be blank.\n"
+"Default: %A - %L\n"
+"Other example: %A/%L"
+msgstr ""
+"Toto je relativní k cílovému adresáři (z tabulky Hlavní) \n"
+"Může být prázdný.\n"
+"Výchozí:%A - %L\n"
+"Další příklad: %A/%L"
+
+#: ../src/interface.c:554
+msgid ""
+"This will be stored in the album directory.\n"
+"Can be blank.\n"
+"Default: %A - %L"
+msgstr ""
+"Toto bude uloženo v adresáři s albem.\n"
+"Může být prázdný.\n"
+"Výchozí: %A - %L"
+
+#: ../src/interface.c:565
+msgid ""
+"This will be stored in the album directory.\n"
+"Cannot be blank.\n"
+"Default: %A - %T\n"
+"Other example: %N - %T"
+msgstr ""
+"Toto bude uloženo v adresáři s albem.\n"
+"Nesmí být prázdný.\n"
+"Výchozí: %A - %T\n"
+"Další příklad: %N - %T"
+
+#: ../src/interface.c:570
+msgid "Filename formats"
+msgstr "Formáty názvu souboru"
+
+#: ../src/interface.c:575
+msgid "Allow changing first track number"
+msgstr ""
+
+#: ../src/interface.c:580
+msgid "Filenames"
+msgstr "Názvy souborů"
+
+#. WAV
+#. frame3 = gtk_frame_new (NULL);
+#. gtk_frame_set_shadow_type(GTK_FRAME(frame3), GTK_SHADOW_IN);
+#. gtk_widget_show (frame3);
+#. gtk_box_pack_start (GTK_BOX (vbox), frame3, FALSE, FALSE, 0);
+#. alignment8 = gtk_alignment_new (0.5, 0.5, 1, 1);
+#. gtk_widget_show (alignment8);
+#. gtk_container_add (GTK_CONTAINER (frame3), alignment8);
+#. gtk_alignment_set_padding (GTK_ALIGNMENT (alignment8), 2, 2, 12, 2);
+#. vbox2 = gtk_vbox_new (FALSE, 0);
+#. gtk_widget_show (vbox2);
+#. gtk_container_add (GTK_CONTAINER (alignment8), vbox2);
+#: ../src/interface.c:614
+msgid "WAV (uncompressed)"
+msgstr "WAV (bez komprese)"
+
+#: ../src/interface.c:635
+msgid "Variable bit rate (VBR)"
+msgstr "Variabilní datový tok (VBR)"
+
+#: ../src/interface.c:643
+msgid "Better quality for the same size."
+msgstr "Lepší kvalita při stejné velikosti."
+
+#: ../src/interface.c:649 ../src/interface.c:736 ../src/interface.c:847
+#: ../src/interface.c:933 ../src/interface.c:981
+msgid "Bitrate"
+msgstr "Datový tok"
+
+#: ../src/interface.c:664 ../src/interface.c:751
+msgid ""
+"Higher bitrate is better quality but also bigger file. Most people use "
+"192Kbps."
+msgstr ""
+"Vyšší datový tok znamená lepší kvalitu, ale velikost souboru se zvětší. "
+"Většina lidí používá 192Kbps."
+
+#: ../src/interface.c:673
+msgid "MP3 (lossy compression)"
+msgstr "MP3 (ztrátová komprese)"
+
+#: ../src/interface.c:696
+msgid "Quality"
+msgstr "Kvalita"
+
+#: ../src/interface.c:707
+msgid "Higher quality means bigger file. Default is 6."
+msgstr "Větší kvalita znamená větší soubor. Výchozí je 6."
+
+#: ../src/interface.c:709
+msgid "OGG Vorbis (lossy compression)"
+msgstr "OGG Vorbis (ztrátová komprese)"
+
+#: ../src/interface.c:760
+#, fuzzy
+msgid "AAC (lossy compression)"
+msgstr "MP3 (ztrátová komprese)"
+
+#: ../src/interface.c:783 ../src/interface.c:899 ../src/interface.c:1038
+msgid "Compression level"
+msgstr "Stupeň komprese"
+
+#: ../src/interface.c:794 ../src/interface.c:1051
+msgid "This does not affect the quality. Higher number means smaller file."
+msgstr "Toto nemá vliv na kvalitu. Větší čísla znamenají menší soubor."
+
+#: ../src/interface.c:796
+msgid "FLAC (lossless compression)"
+msgstr "FLAC (bezztrátová komprese)"
+
+#: ../src/interface.c:815
+msgid "More formats"
+msgstr "Více formátů"
+
+#: ../src/interface.c:861
+msgid ""
+"Higher bitrate is better quality but also bigger file. Most people use "
+"160Kbps."
+msgstr ""
+"Vyšší datový tok znamená lepší kvalitu, ale velikost souboru se zvětší. "
+"Většina lidí používá 160Kbps."
+
+#: ../src/interface.c:869
+msgid "OPUS (lossy compression)"
+msgstr "OPUS (ztrátová komprese)"
+
+#: ../src/interface.c:912
+msgid ""
+"This does not affect the quality. Higher number means smaller file. Default "
+"is 1 (recommended)."
+msgstr ""
+"Toto nemá vliv na kvalitu. Větší čísla znamenají menší soubor. Výchozí "
+"hodnota je 1 (doporučená)."
+
+#: ../src/interface.c:918
+msgid "Hybrid compression"
+msgstr "Hybridní komprese"
+
+#: ../src/interface.c:927
+msgid ""
+"The format is lossy but a correction file is created for restoring the "
+"lossless original."
+msgstr ""
+"Formát je ztrátový, ale bude vytvořen korekční soubor pro obnovení "
+"bezztrátového originálu."
+
+#: ../src/interface.c:997
+msgid "Higher bitrate is better quality but also bigger file."
+msgstr ""
+"Vyšší datový tok znamená lepší kvalitu, ale velikost souboru se zvětší."
+
+#: ../src/interface.c:1005
+msgid "Musepack (lossy compression)"
+msgstr "Musepack (ztrátová komprese)"
+
+#: ../src/interface.c:1053
+msgid "Monkey's Audio (lossless compression)"
+msgstr "Monkey's audio (bezztrátová komprese)"
+
+#. END MONKEY
+#. ~ expander = gtk_expander_new(_("Proprietary encoders"));
+#. ~ gtk_widget_show (expander);
+#. ~ gtk_box_pack_start (GTK_BOX (vbox), expander, FALSE, FALSE, 0);
+#. ~ GLADE_HOOKUP_OBJECT (prefs, expander, "proprietary_formats_expander");
+#. ~ hiddenbox = gtk_vbox_new (FALSE, 0);
+#. ~ gtk_widget_show (hiddenbox);
+#. ~ gtk_container_add (GTK_CONTAINER (expander), hiddenbox);
+#: ../src/interface.c:1071
+msgid "Encode"
+msgstr "Překódovat"
+
+#: ../src/interface.c:1105
+msgid "Get disc info from the internet automatically"
+msgstr "Získat informaci o disku z internetu automaticky"
+
+#: ../src/interface.c:1113 ../src/interface.c:1159
+msgid "Server: "
+msgstr "Server: "
+
+#: ../src/interface.c:1123
+msgid "The CDDB server to get disc info from (default is freedb.freedb.org)"
+msgstr "CDDB server pro získání informací (výchozí je freedb.freedb.org"
+
+#: ../src/interface.c:1129 ../src/interface.c:1172
+msgid "Port: "
+msgstr "Port: "
+
+#: ../src/interface.c:1139
+msgid "The CDDB server port (default is 8880)"
+msgstr "Port CDDB serveru (výchozí je 8880)"
+
+#: ../src/interface.c:1146
+msgid "Use an HTTP proxy to connect to the internet"
+msgstr "Použít HTTP proxy pro připojení k internetu"
+
+#: ../src/interface.c:1194
+msgid "Artist/Title separator: "
+msgstr ""
+
+#: ../src/interface.c:1205
+msgid "Log to /var/log/asunder.log"
+msgstr ""
+
+#: ../src/interface.c:1210
+msgid "Faster ripping (no error correction)"
+msgstr ""
+
+#: ../src/interface.c:1219
+msgid "Advanced"
+msgstr "Pokročilé"
+
+#: ../src/interface.c:1292 ../src/interface.c:1328
+msgid "Ripping"
+msgstr "Ripování"
+
+#: ../src/interface.c:1321
+msgid "Total progress"
+msgstr "Celkový průběh"
+
+#: ../src/interface.c:1335
+msgid "Encoding"
+msgstr "Kódování"
+
+#: ../src/interface.c:1923
+#, fuzzy
+msgid ""
+"An application to save tracks from an Audio CD \n"
+"as WAV, MP3, OGG, FLAC, Wavpack, Opus, Musepack, Monkey's Audio, and/or AAC "
+"files."
+msgstr ""
+"Aplikace pro ukládání skladeb z Audio CD \n"
+"jako WAV, MP3, OGG, FLAC, Opus, Wavpack, Musepack, Monkey's Audio, a/nebo "
+"AAC files."
+
+#: ../src/interface.c:1965
+#, c-format
+msgid "%d file created successfully"
+msgid_plural "%d files created successfully"
+msgstr[0] "%d soubor úspěšně vytvořen"
+msgstr[1] "%d soubory úspěšně vytvořeny"
+
+#: ../src/interface.c:1974
+#, c-format
+msgid "There was an error creating %d file"
+msgid_plural "There was an error creating %d files"
+msgstr[0] "Chyba při vytváření %d souboru"
+msgstr[1] "Chyba při vytváření %d souborů"
+
+#: ../src/prefs.c:775 ../src/prefs.c:787
+#, c-format
+msgid "Invalid characters in the '%s' field"
+msgstr "Neplatné znaky v poli '%s'"
+
+#: ../src/prefs.c:797
+#, c-format
+msgid "'%s' cannot be empty"
+msgstr "'%s' nesmí být prázdné"
+
+#: ../src/prefs.c:812
+msgid "Invalid proxy port number"
+msgstr "Neplatné číslo portu proxy"
+
+#: ../src/prefs.c:825
+msgid "Invalid cddb server port number"
+msgstr "Neplatné číslo portu pro CDDB server"
+
+#: ../src/support.c:47
+msgid "Overwrite?"
+msgstr "Přepsat?"
+
+#: ../src/support.c:60
+#, c-format
+msgid "The file '%s' already exists. Do you want to overwrite it?\n"
+msgstr "Soubor '%s' již existuje. Přejete si ho přepsat?\n"
+
+#: ../src/support.c:66
+msgid "Remember the answer for _all the files made from this CD"
+msgstr "Zapamatovat si odpověď pro _všechny soubory vytvořené z tohoto CD"
+
+#: ../src/threads.c:188
+msgid ""
+"No ripping/encoding method selected. Please enable one from the "
+"'Preferences' menu."
+msgstr ""
+"Nebyla zvolena metoda ripování/kódování. Prosím, povolte jednu v menu "
+"'Nastavení'."
+
+#: ../src/threads.c:220
+msgid ""
+"No tracks were selected for ripping/encoding. Please select at least one "
+"track."
+msgstr ""
+"Žádná stopa nebyla vybrána pro ripování/kódování. Prosím, vyberte alespoň "
+"jednu stopu."
+
+#: ../src/threads.c:1298 ../src/threads.c:1300 ../src/threads.c:1304
+msgid "Waiting..."
+msgstr "Čekám..."
+
+#~ msgid "Proprietary encoders"
+#~ msgstr "Proprietární enkodery"
+
+#~ msgid "Higher quality means bigger file. Default is 60."
+#~ msgstr "Větší kvalita znamená větší soubor. Výchozí je 60."
+
+#~ msgid "AAC (lossy compression, Nero encoder)"
+#~ msgstr "AAC (ztrátová komprese, enkóder z Nera)"
+
+#~ msgid "Genre"
+#~ msgstr "Styl"
+
+#~ msgid "Single Genre"
+#~ msgstr "Jednotný žánr"
+
+#, fuzzy
+#~ msgid ""
+#~ "%s was not found in your path. Asunder requires it to create %s files.All "
+#~ "%s functionality is disabled."
+#~ msgstr ""
+#~ "%s nebyl nalezen v proměnné $PATH. Asunder ho potřebuje pro vytvoření "
+#~ "souborů %s. Všechna funkcionalita %s je zakázána."

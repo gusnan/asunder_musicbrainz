@@ -1,0 +1,8 @@
+	../src/main.c \
+	../src/callbacks.c \
+	../src/interface.c \
+	../src/prefs.c \
+	../src/support.c \
+	../src/threads.c \
+	../src/util.c \
+	../src/wrappers.c
