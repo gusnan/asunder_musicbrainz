@@ -6,3 +6,7 @@ releases/
 .deps/
 src/.deps/
 src/.deps
+po/asunder.pot
+po/*.mo
+po/*.gmo
+src/*.o
