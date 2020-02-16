@@ -10,3 +10,4 @@ po/asunder.pot
 po/*.mo
 po/*.gmo
 src/*.o
+src/asunder
