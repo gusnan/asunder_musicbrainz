@@ -11,3 +11,6 @@ po/*.mo
 po/*.gmo
 src/*.o
 src/asunder
+src/Makefile.in
+src/Makefile
+
