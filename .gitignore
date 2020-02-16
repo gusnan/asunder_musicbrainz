@@ -4,8 +4,8 @@ stamp-h1
 src/.deps/
 releases/
 .deps/
-src/.deps/
 src/.deps
+src/.deps/*
 po/asunder.pot
 po/*.mo
 po/*.gmo
