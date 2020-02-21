@@ -16,6 +16,8 @@ asunder_SOURCES = \
 	threads.c threads.h \
 	util.c util.h \
 	wrappers.c wrappers.h \
-	completion.c completion.h
+	completion.c completion.h \
+    asunder_disc.c asunder_disc.h \
+    musicbrainz.c musicbrainz.h
 
 asunder_LDADD = @PACKAGE_LIBS@ $(INTLLIBS)

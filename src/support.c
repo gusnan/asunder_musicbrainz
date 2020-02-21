@@ -24,6 +24,7 @@ Foundation; version 2 of the licence.
 #include <gtk/gtk.h>
 
 #include "support.h"
+#include "asunder_disc.h"
 #include "main.h"
 
 /* set in doRip() first */

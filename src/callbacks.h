@@ -74,11 +74,11 @@ on_cancel_clicked                      (GtkButton       *button,
                                         gpointer         user_data);
 
 //~ void
-//~ on_cddb_update_close_clicked          (GtkButton       *button,
+//~ on_musicbrainz_update_close_clicked          (GtkButton       *button,
                                        //~ GtkWidget**      update_window);
 
 gboolean
-on_cddb_update_closed         (GtkWidget *widget,
+on_musicbrainz_update_closed         (GtkWidget *widget,
                                GdkEvent  *event,
                                GtkWidget**      update_window);
 

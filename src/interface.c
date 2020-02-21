@@ -23,6 +23,7 @@ Foundation; version 2 of the licence.
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
 
+#include "asunder_disc.h"
 #include "main.h"
 #include "prefs.h"
 #include "callbacks.h"
@@ -91,7 +92,7 @@ create_main (void)
     GtkWidget* icon;
     icon = gtk_image_new_from_stock(GTK_STOCK_REFRESH, gtk_toolbar_get_icon_size(GTK_TOOLBAR(toolbar1)));
     gtk_widget_show (icon);
-    lookup = (GtkWidget*)gtk_tool_button_new(icon, _("CDDB Lookup"));
+    lookup = (GtkWidget*)gtk_tool_button_new(icon, _("Musicbrainz Lookup"));
     gtk_widget_show (lookup);
     gtk_container_add (GTK_CONTAINER (toolbar1), lookup);
     gtk_tool_item_set_is_important (GTK_TOOL_ITEM (lookup), TRUE);
@@ -1074,14 +1075,14 @@ create_prefs (void)
     /* END ENCODE tab */
 
     /* ADVANCED tab */
-    GtkWidget* do_cddb_updates;
+    GtkWidget* do_musicbrainz_updates;
     GtkWidget* frame;
     GtkWidget* hbox;
-    GtkWidget* cddbServerName;
-    GtkWidget* cddbPortNum;
+    GtkWidget* musicbrainzServerName;
+    GtkWidget* musicbrainzPortNum;
     GtkWidget* useProxy;
-    GtkWidget* serverName;
-    GtkWidget* portNum;
+    GtkWidget* proxyServerName;
+    GtkWidget* proxyPortNum;
     GtkWidget* frameVbox;
     GtkWidget* concatenated_track_separator;
     GtkWidget* do_log;
@@ -1094,7 +1095,7 @@ create_prefs (void)
     
     frame = gtk_frame_new (NULL);
     gtk_frame_set_shadow_type(GTK_FRAME(frame), GTK_SHADOW_IN);
-    gtk_frame_set_label(GTK_FRAME(frame), "CDDB");
+    gtk_frame_set_label(GTK_FRAME(frame), "MusicBrainz");
     gtk_widget_show (frame);
     gtk_box_pack_start (GTK_BOX (vbox), frame, FALSE, FALSE, 0);
     
@@ -1102,9 +1103,9 @@ create_prefs (void)
     gtk_widget_show (frameVbox);
     gtk_container_add (GTK_CONTAINER (frame), frameVbox);
     
-    do_cddb_updates = gtk_check_button_new_with_mnemonic (_("Get disc info from the internet automatically"));
-    gtk_widget_show (do_cddb_updates);
-    gtk_box_pack_start (GTK_BOX (frameVbox), do_cddb_updates, FALSE, FALSE, 0);
+    do_musicbrainz_updates = gtk_check_button_new_with_mnemonic (_("Get disc info from the internet automatically"));
+    gtk_widget_show (do_musicbrainz_updates);
+    gtk_box_pack_start (GTK_BOX (frameVbox), do_musicbrainz_updates, FALSE, FALSE, 0);
     
     hbox = gtk_hbox_new (FALSE, 0);
     gtk_widget_show (hbox);
@@ -1114,13 +1115,13 @@ create_prefs (void)
     gtk_widget_show (label);
     gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 5);
     
-    cddbServerName = gtk_entry_new ();
-    gtk_widget_show (cddbServerName);
-    gtk_box_pack_start (GTK_BOX (hbox), cddbServerName, TRUE, TRUE, 5);
-    GLADE_HOOKUP_OBJECT (prefs, cddbServerName, "cddb_server_name");
+    musicbrainzServerName = gtk_entry_new ();
+    gtk_widget_show (musicbrainzServerName);
+    gtk_box_pack_start (GTK_BOX (hbox), musicbrainzServerName, TRUE, TRUE, 5);
+    GLADE_HOOKUP_OBJECT (prefs, musicbrainzServerName, "musicbrainz_server_name");
     
     tooltips = gtk_tooltips_new ();
-    gtk_tooltips_set_tip (tooltips, cddbServerName, _("The CDDB server to get disc info from (default is freedb.freedb.org)"), NULL);
+    gtk_tooltips_set_tip (tooltips, musicbrainzServerName, _("The Musicbrainz server to get disc info from (default is freedb.freedb.org)"), NULL);
     
     hbox = gtk_hbox_new (FALSE, 0);
     gtk_widget_show (hbox);
@@ -1130,13 +1131,13 @@ create_prefs (void)
     gtk_widget_show (label);
     gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 5);
     
-    cddbPortNum = gtk_entry_new ();
-    gtk_widget_show (cddbPortNum);
-    gtk_box_pack_start (GTK_BOX (hbox), cddbPortNum, TRUE, TRUE, 5);
-    GLADE_HOOKUP_OBJECT (prefs, cddbPortNum, "cddb_port_number");
+    musicbrainzPortNum = gtk_entry_new ();
+    gtk_widget_show (musicbrainzPortNum);
+    gtk_box_pack_start (GTK_BOX (hbox), musicbrainzPortNum, TRUE, TRUE, 5);
+    GLADE_HOOKUP_OBJECT (prefs, musicbrainzPortNum, "musicbrainz_port_number");
     
     tooltips = gtk_tooltips_new ();
-    gtk_tooltips_set_tip (tooltips, cddbPortNum, _("The CDDB server port (default is 8880)"), NULL);
+    gtk_tooltips_set_tip (tooltips, musicbrainzPortNum, _("The MusicBrainz server port (default is 8880)"), NULL);
     
     frame = gtk_frame_new (NULL);
     gtk_frame_set_shadow_type(GTK_FRAME(frame), GTK_SHADOW_IN);
@@ -1160,10 +1161,10 @@ create_prefs (void)
     gtk_widget_show (label);
     gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 5);
     
-    serverName = gtk_entry_new ();
-    gtk_widget_show (serverName);
-    gtk_box_pack_start (GTK_BOX (hbox), serverName, TRUE, TRUE, 5);
-    GLADE_HOOKUP_OBJECT (prefs, serverName, "server_name");
+    proxyServerName = gtk_entry_new ();
+    gtk_widget_show (proxyServerName);
+    gtk_box_pack_start (GTK_BOX (hbox), proxyServerName, TRUE, TRUE, 5);
+    GLADE_HOOKUP_OBJECT (prefs, proxyServerName, "proxy_server_name");
     
     hbox = gtk_hbox_new (FALSE, 0);
     gtk_widget_show (hbox);
@@ -1173,10 +1174,10 @@ create_prefs (void)
     gtk_widget_show (label);
     gtk_box_pack_start (GTK_BOX (hbox), label, FALSE, FALSE, 5);
     
-    portNum = gtk_entry_new ();
-    gtk_widget_show (portNum);
-    gtk_box_pack_start (GTK_BOX (hbox), portNum, TRUE, TRUE, 5);
-    GLADE_HOOKUP_OBJECT (prefs, portNum, "port_number");
+    proxyPortNum = gtk_entry_new ();
+    gtk_widget_show (proxyPortNum);
+    gtk_box_pack_start (GTK_BOX (hbox), proxyPortNum, TRUE, TRUE, 5);
+    GLADE_HOOKUP_OBJECT (prefs, proxyPortNum, "proxy_port_number");
 
     frame = gtk_frame_new (NULL);
     gtk_widget_show (frame);
@@ -1264,7 +1265,7 @@ create_prefs (void)
     GLADE_HOOKUP_OBJECT (prefs, flacLbl, "flac_lbl");
     GLADE_HOOKUP_OBJECT (prefs, flaccompression, "flaccompression");
     GLADE_HOOKUP_OBJECT (prefs, rip_flac, "rip_flac");
-    GLADE_HOOKUP_OBJECT (prefs, do_cddb_updates, "do_cddb_updates");
+    GLADE_HOOKUP_OBJECT (prefs, do_musicbrainz_updates, "do_musicbrainz_updates");
     GLADE_HOOKUP_OBJECT_NO_REF (prefs, dialog_action_area1, "dialog_action_area1");
     GLADE_HOOKUP_OBJECT (prefs, cancelbutton1, "cancelbutton1");
     GLADE_HOOKUP_OBJECT (prefs, okbutton1, "okbutton1");

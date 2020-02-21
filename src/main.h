@@ -1,5 +1,4 @@
 #include <gtk/gtk.h>
-#include <cddb/cddb.h>
 #include <stdbool.h>
 
 // LNR - I think the editable genre column should come before the static track time,
@@ -17,20 +16,20 @@ enum
     NUM_COLS
 };
 
-// creates a tree model that represents the data in the cddb_disc_t
-GtkTreeModel * create_model_from_disc(cddb_disc_t * disc);
+// creates a tree model that represents the data in the asunder_disc
+GtkTreeModel * create_model_from_disc(asunder_disc * disc);
 
 // open/close the drive's tray
 void eject_disc(char * cdrom);
 
-// looks up the given cddb_disc_t in the online database, and fills in the values
-GList * lookup_disc(cddb_disc_t * disc);
+// looks up the given asunder_disc in the online database, and fills in the values
+GList * lookup_disc(asunder_disc * disc);
 
 // the main logic for scanning the discs
 void refresh(void);
 
-// updates all the necessary widgets with the data for the given cddb_disc_t
-void update_tracklist(cddb_disc_t * disc);
+// updates all the necessary widgets with the data for the given asunder_disc
+void update_tracklist(asunder_disc * disc);
 
 void clear_widgets();
 

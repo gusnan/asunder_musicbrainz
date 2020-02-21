@@ -15,8 +15,8 @@ Foundation; version 2 of the licence.
 #endif
 
 #include <gtk/gtk.h>
+#include <glib/gprintf.h>
 #include <sys/types.h>
-#include <cddb/cddb.h>
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -35,6 +35,11 @@ Foundation; version 2 of the licence.
     #include <linux/cdrom.h>
 #endif
 
+#include "musicbrainz5/mb5_c.h"
+
+#include "asunder_disc.h"
+#include "musicbrainz.h"
+
 #include "main.h"
 #include "interface.h"
 #include "support.h"
@@ -44,7 +49,9 @@ Foundation; version 2 of the licence.
 #include "wrappers.h"
 #include "threads.h"
 
-static unsigned int gbl_current_discid = 0;
+//static unsigned int gbl_current_discid = 0;
+
+static char *gbl_current_discid = NULL;
 
 GList * gbl_disc_matches = NULL;
 gboolean track_format[100];
@@ -369,16 +376,16 @@ void clear_widgets()
 }
 
 
-GtkTreeModel * create_model_from_disc(cddb_disc_t * disc)
+GtkTreeModel * create_model_from_disc(asunder_disc * disc)
 {
     GtkListStore * store;
     GtkTreeIter iter;
-    cddb_track_t * track;
+    asunder_track * track;
     int seconds;
     char time[6];
     char * track_artist;
     char * track_title;
-    
+
     store = gtk_list_store_new(NUM_COLS, 
                                G_TYPE_BOOLEAN, /* rip? checkbox */
                                G_TYPE_UINT, /* track number */
@@ -389,29 +396,33 @@ GtkTreeModel * create_model_from_disc(cddb_disc_t * disc)
                                G_TYPE_STRING  /* artist + title concatenated */
                                );
     
-    for (track = cddb_disc_get_track_first(disc); track != NULL; track = cddb_disc_get_track_next(disc))
+    if (disc != NULL) {
+    for (track = asunder_disc_get_track_first(disc); track != NULL; track = asunder_disc_get_track_next(disc))
     {
-        seconds = cddb_track_get_length(track);
+        if (track != NULL) {
+        seconds = asunder_track_get_length(track);
         snprintf(time, 6, "%02d:%02d", seconds/60, seconds%60);
         
-        track_artist = (char*)cddb_track_get_artist(track);
+        track_artist = (char*)asunder_track_get_artist(track);
         //trim_chars(track_artist, BADCHARS);		// lnr	//Commented out by mrpl
         trim_whitespace(track_artist);
         
-        track_title = (char*)cddb_track_get_title(track); //!! this returns const char*
+        track_title = (char*)asunder_track_get_title(track); //!! this returns const char*
         //trim_chars(track_title, BADCHARS);		// lnr	//Commented out by mrpl
         trim_whitespace(track_title);
         
         gtk_list_store_append(store, &iter);
         gtk_list_store_set(store, &iter,
-            COL_RIPTRACK, track_format[cddb_track_get_number(track)],
-            COL_TRACKNUM, cddb_track_get_number(track),
-            COL_TRACKNUM_VIS, cddb_track_get_number(track) + global_prefs->first_track_num_offset,
+            COL_RIPTRACK, track_format[asunder_track_get_number(track)],
+            COL_TRACKNUM, asunder_track_get_number(track),
+            COL_TRACKNUM_VIS, asunder_track_get_number(track) + global_prefs->first_track_num_offset,
             COL_TRACKARTIST, track_artist,
             COL_TRACKTITLE, track_title,
             COL_TRACKARTISTTITLE, "",
             COL_TRACKTIME, time,
             -1);
+        }
+    }
     }
     
     return GTK_TREE_MODEL(store);
@@ -458,36 +469,41 @@ void eject_disc(char * cdrom)
     }
 }
 
-GList * cddb_query_run(cddb_conn_t * conn, cddb_disc_t * original_disc)
+GList * asunder_query_run(musicbrainz_conn* conn, asunder_disc * original_disc)
 {
     char logStr[1024];
     int i;
     GList * matches = NULL;
-    // Use clone of original disc since cddb_query_next() will overwrite it.
-    cddb_disc_t * disc = cddb_disc_clone(original_disc);
     
-    int num_matches = cddb_query(conn, disc);
+    // Use clone of original disc since asunder_query_next() will overwrite it.
+    asunder_disc *disc = asunder_disc_clone(original_disc);
+    
+    int num_matches = musicbrainz_query(conn, disc);
     if (num_matches == -1)
     {
-        cddb_error_print(cddb_errno(conn));
+        if (musicbrainz_get_error_message(conn) != NULL) {
+            printf("%s\n", musicbrainz_get_error_message(conn));
+        }
         num_matches = 0;
     }
     
-    snprintf(logStr, 1024, "Found %d CDDB matches", num_matches);
+    snprintf(logStr, 1024, "Found %d musicbrainz matches", num_matches);
     debugLog(logStr);
     
     // make a list of all the matches
+    if (num_matches != 0) {
     for (i = 0; i < num_matches; i++)
     {
-        cddb_disc_t * possible_match = cddb_disc_clone(disc);
-        if (cddb_read(conn, possible_match))
+        asunder_disc* possible_match = asunder_disc_clone(disc);
+        if (musicbrainz_read(conn, possible_match))
         {
-            snprintf(logStr, 1024, "Match %d: '%08x' '%s' '%s' '%s'\n",
+            //snprintf(logStr, 1024, "Match %d: '%08x' '%s' '%s' '%s'\n",
+            snprintf(logStr, 1024, "Match %d: '%s' '%s' '%s' '%s'\n",
                 i + 1,
-                cddb_disc_get_discid(possible_match),
-                cddb_disc_get_artist(possible_match),
-                cddb_disc_get_title(possible_match),
-                cddb_disc_get_genre(possible_match));
+                asunder_disc_get_discid(possible_match),
+                asunder_disc_get_artist(possible_match),
+                asunder_disc_get_title(possible_match),
+                asunder_disc_get_genre(possible_match));
             debugLog(logStr);
 
             matches = g_list_append(matches, possible_match);
@@ -495,56 +511,67 @@ GList * cddb_query_run(cddb_conn_t * conn, cddb_disc_t * original_disc)
             // move to next match
             if (i < num_matches - 1)
             {
-                if (!cddb_query_next(conn, disc))
+                if (!musicbrainz_query_next(conn, disc))
                     fatalError("Query index out of bounds.");
             }
         }
         else
         {
-            fprintf(stderr, "Failed to cddb_read()\n");
-            cddb_error_print(cddb_errno(conn));
-            cddb_disc_destroy(possible_match);
+            fprintf(stderr, "Failed to musicbrainz_read()\n");
+            printf("%s\n", musicbrainz_get_error_message(conn));
+
+            if (possible_match != NULL) {
+                asunder_disc_destroy(possible_match);                
+                possible_match = NULL;
+            }
+            
         }
     }
+    } else {
+        printf("We've got 0 matches!\n");
+    }
     
-    cddb_disc_destroy(disc);
+    if (disc != NULL) {
+        asunder_disc_destroy(disc);
+        disc = NULL;
+    }
     return matches;
 }
 
-GList * lookup_disc(cddb_disc_t * disc)
+GList * lookup_disc(asunder_disc * disc)
 {
-    // set up the connection to the cddb server
-    cddb_conn_t * conn = cddb_new();
+
+
+    // get the musicbrainz server and port from settings
+    char *musicbrainz_server = global_prefs->musicbrainz_server_name;
+    int musicbrainz_port = global_prefs->musicbrainz_port_number;
+
+    // set up the connection to the musicbrainz server
+    musicbrainz_conn *conn = musicbrainz_connection_new(musicbrainz_server, musicbrainz_port);
+
     if (conn == NULL)
-        fatalError("cddb_new() failed. Out of memory?");
-    
-    cddb_set_server_name(conn, global_prefs->cddb_server_name);
-    cddb_set_server_port(conn, global_prefs->cddb_port_number);
-    
-    if (global_prefs->use_proxy)
-    {
-        cddb_set_http_proxy_server_name(conn, global_prefs->server_name);
-        cddb_set_http_proxy_server_port(conn, global_prefs->port_number);
-        cddb_http_proxy_enable(conn);
+        fatalError("musicbrainz_new() failed. Out of memory?");
+
+    // Check if we have an error message
+    if (conn->error_message[0] != 0) {
+
+        g_printf("musicbrainz_new() failed - Error message: %s\n", conn->error_message);
+    }
+
+    if (global_prefs->use_proxy) {
+
+        musicbrainz_set_proxy(conn, global_prefs->proxy_server_name, global_prefs->proxy_port_number);
     }
     
-    // force HTTP when port 80 (for MusicBrainz). This code by Tim.
-    if (global_prefs->cddb_port_number == 80)
-        cddb_http_enable(conn);
-
-    // Disable caching of CDDB entries since libcddb bug fouls up multiple matches.
-    // https://sourceforge.net/p/libcddb/bugs/9/
-    cddb_cache_disable(conn);
-    
-    // show cddb update window
+    // show musicbrainz update window
     gdk_threads_enter();
         disable_all_main_widgets();
         
         gtk_label_set_markup(GTK_LABEL(statusLbl), _("<b>Getting disc info from the internet...</b>"));
     gdk_threads_leave();
 
-    // query cddb to find similar discs
-    GList * matches = cddb_query_run(conn, disc);
+    // query musicbrainz to find similar discs
+    GList * matches = asunder_query_run(conn, disc);
 
     gdk_threads_enter();
         gtk_label_set_text(GTK_LABEL(statusLbl), "");
@@ -552,15 +579,15 @@ GList * lookup_disc(cddb_disc_t * disc)
         enable_all_main_widgets();
     gdk_threads_leave();
     
-    cddb_destroy(conn);
+    musicbrainz_connection_destroy(conn);
     
     return matches;
 }
 
-// reads the TOC of a cdrom into a CDDB struct
+// reads the TOC of a cdrom into a asunder struct
 // returns the filled out struct
 // so we can send it over the internet to lookup the disc
-cddb_disc_t * read_disc(char * cdrom)
+asunder_disc * read_disc(char * cdrom)
 {
     char logStr[1024];
     int fd;
@@ -582,8 +609,8 @@ cddb_disc_t * read_disc(char * cdrom)
     struct cdrom_tocentry te;
 #endif
     
-    cddb_disc_t * disc = NULL;
-    cddb_track_t * track = NULL;
+    asunder_disc * disc = NULL;
+    asunder_track * track = NULL;
 
     char trackname[9];
 
@@ -620,9 +647,9 @@ cddb_disc_t * read_disc(char * cdrom)
             snprintf(logStr, 1024, "starting track: %d, ending track: %d\n", th.starting_track, th.ending_track);
             debugLog(logStr);
             
-            disc = cddb_disc_new();
+            disc = asunder_disc_new(cdrom);
             if (disc == NULL)
-                fatalError("cddb_disc_new() failed. Out of memory?");
+                fatalError("asunder_disc_new() failed. Out of memory?");
             
             te.address_format = CD_LBA_FORMAT;
             for (i=th.starting_track; i<=th.ending_track; i++)
@@ -638,15 +665,16 @@ cddb_disc_t * read_disc(char * cdrom)
                         track_format[i] = TRUE;
                     }
 
-                    track = cddb_track_new();
+                    track = asunder_track_new();
                     if (track == NULL)
-                        fatalError("cddb_track_new() failed. Out of memory?");
+                        fatalError("asunder_track_new() failed. Out of memory?");
                     
-                    cddb_track_set_frame_offset(track, ntohl(te.entry.addr.lba)+SECONDS_TO_FRAMES(2));
+                    asunder_track_set_offset(track, ntohl(te.entry.addr.lba)+SECONDS_TO_FRAMES(2));
                     snprintf(trackname, 9, "Track %d", i);
-                    cddb_track_set_title(track, trackname);
-                    cddb_track_set_artist(track, "Unknown Artist");
-                    cddb_disc_add_track(disc, track);
+                    asunder_track_set_title(track, trackname);
+                    asunder_track_set_artist(track, "Unknown Artist");
+                    asunder_track_set_number(track, i);
+                    asunder_disc_add_track(disc, track);
                 }
                 if (working || refresh_forced)
                     break;
@@ -654,7 +682,7 @@ cddb_disc_t * read_disc(char * cdrom)
             te.track = 0xAA;
             if (ioctl(fd, CDIOREADTOCENTRY, &te) == 0)
             {
-                cddb_disc_set_length(disc, (ntohl(te.entry.addr.lba)+SECONDS_TO_FRAMES(2))/SECONDS_TO_FRAMES(1));
+                asunder_disc_set_length(disc, (ntohl(te.entry.addr.lba)+SECONDS_TO_FRAMES(2))/SECONDS_TO_FRAMES(1));
             }
         }
     }
@@ -674,9 +702,9 @@ cddb_disc_t * read_disc(char * cdrom)
             snprintf(logStr, 1024, "starting track: %d, ending track: %d\n", th.starting_track, th.ending_track);
             debugLog(logStr);
             
-            disc = cddb_disc_new();
+            disc = asunder_disc_new(cdrom);
             if (disc == NULL)
-                fatalError("cddb_disc_new() failed. Out of memory?");
+                fatalError("asunder_disc_new() failed. Out of memory?");
             
             te.address_format = CD_LBA_FORMAT;
             te.data = &toc ;
@@ -694,15 +722,16 @@ cddb_disc_t * read_disc(char * cdrom)
                         track_format[i] = TRUE;
                     }
 
-                    track = cddb_track_new();
+                    track = asunder_track_new();
                     if (track == NULL)
-                        fatalError("cddb_track_new() failed. Out of memory?");
+                        fatalError("asunder_track_new() failed. Out of memory?");
                     
-                    cddb_track_set_frame_offset(track, te.data->addr.lba+SECONDS_TO_FRAMES(2));
+                    asunder_track_set_offset(track, te.data->addr.lba+SECONDS_TO_FRAMES(2));
                     snprintf(trackname, 9, "Track %d", i);
-                    cddb_track_set_title(track, trackname);
-                    cddb_track_set_artist(track, "Unknown Artist");
-                    cddb_disc_add_track(disc, track);
+                    asunder_track_set_title(track, trackname);
+                    asunder_track_set_artist(track, "Unknown Artist");
+                    asunder_track_set_number(track, i);
+                    asunder_disc_add_track(disc, track);
                 }
                 if (working || refresh_forced)
                     break;
@@ -710,7 +739,7 @@ cddb_disc_t * read_disc(char * cdrom)
             te.starting_track = 0xAA;
             if (ioctl(fd, CDIOREADTOCENTRIES, &te) == 0)
              {
-                cddb_disc_set_length(disc, (te.data->addr.lba+SECONDS_TO_FRAMES(2))/SECONDS_TO_FRAMES(1));
+                asunder_disc_set_length(disc, (te.data->addr.lba+SECONDS_TO_FRAMES(2))/SECONDS_TO_FRAMES(1));
             }
         }
     }
@@ -725,9 +754,9 @@ cddb_disc_t * read_disc(char * cdrom)
             snprintf(logStr, 1024, "starting track: %d, ending track: %d\n", th.cdth_trk0, th.cdth_trk1);
             debugLog(logStr);
             
-            disc = cddb_disc_new();
+            disc = asunder_disc_new(cdrom);
             if (disc == NULL)
-                fatalError("cddb_disc_new() failed. Out of memory?");
+                fatalError("asunder_disc_new() failed. Out of memory?");
             
             te.cdte_format = CDROM_LBA;
             for (i=th.cdth_trk0; i<=th.cdth_trk1; i++)
@@ -743,15 +772,16 @@ cddb_disc_t * read_disc(char * cdrom)
                         track_format[i] = TRUE;
                     }
 
-                    track = cddb_track_new();
+                    track = asunder_track_new();
                     if (track == NULL)
-                        fatalError("cddb_track_new() failed. Out of memory?");
+                        fatalError("asunder_track_new() failed. Out of memory?");
 
-                    cddb_track_set_frame_offset(track, te.cdte_addr.lba + SECONDS_TO_FRAMES(2));
+                    asunder_track_set_offset(track, te.cdte_addr.lba + SECONDS_TO_FRAMES(2));
                     snprintf(trackname, 9, "Track %d", i);
-                    cddb_track_set_title(track, trackname);
-                    cddb_track_set_artist(track, "Unknown Artist");
-                    cddb_disc_add_track(disc, track);
+                    asunder_track_set_title(track, trackname);
+                    asunder_track_set_artist(track, "Unknown Artist");
+                    asunder_track_set_number(track, i);
+                    asunder_disc_add_track(disc, track);
                 }
                 if (working || refresh_forced)
                     break;
@@ -760,7 +790,7 @@ cddb_disc_t * read_disc(char * cdrom)
             te.cdte_track = CDROM_LEADOUT;
             if (ioctl(fd, CDROMREADTOCENTRY, &te) == 0)
             {
-                cddb_disc_set_length(disc, (te.cdte_addr.lba+SECONDS_TO_FRAMES(2))/SECONDS_TO_FRAMES(1));
+                asunder_disc_set_length(disc, (te.cdte_addr.lba+SECONDS_TO_FRAMES(2))/SECONDS_TO_FRAMES(1));
             }
         }
     }
@@ -771,8 +801,7 @@ cddb_disc_t * read_disc(char * cdrom)
     * "let us have a discid for each read disc" */
     if (disc)
     {
-        cddb_disc_calc_discid(disc);
-        snprintf(logStr, 1024, "read_disc: discid=%08x\n", cddb_disc_get_discid(disc));
+        snprintf(logStr, 1024, "read_disc: discid=%s\n", asunder_disc_get_discid(disc));
         debugLog(logStr);
     }
 
@@ -783,25 +812,27 @@ cddb_disc_t * read_disc(char * cdrom)
 
     if (working || refresh_forced)
     {
-        cddb_disc_destroy(disc);
-        disc = NULL;
+        if (disc) {
+            asunder_disc_destroy(disc);
+            disc = NULL;
+        }
     }
 
     return disc;
 }
 
 
-void update_tracklist(cddb_disc_t * disc)
+void update_tracklist(asunder_disc * disc)
 {
     GtkTreeModel * model;
-    char * disc_artist = g_strdup (cddb_disc_get_artist (disc));
-    char * disc_title = g_strdup (cddb_disc_get_title (disc));
-    char * disc_genre = g_strdup (cddb_disc_get_genre (disc));			// lnr
-    unsigned disc_year = cddb_disc_get_year(disc);
-    cddb_track_t * track;
+    char * disc_artist = g_strdup (asunder_disc_get_artist (disc));
+    char * disc_title = g_strdup (asunder_disc_get_title (disc));
+    char * disc_genre = g_strdup (asunder_disc_get_genre (disc));			// lnr
+    char * disc_year = asunder_disc_get_release_date(disc);
+    asunder_track * track;
     bool singleartist;
     char logStr[1024];
- 
+
     // Reset column visibility to defaults
     join_artist_title = JOIN_UNSET;
     gtk_tree_view_column_set_visible(gtk_tree_view_get_column(GTK_TREE_VIEW(tracklist),
@@ -811,9 +842,9 @@ void update_tracklist(cddb_disc_t * disc)
                 COL_TRACKTITLE),
             TRUE);
 
-    gbl_current_discid = cddb_disc_get_discid(disc);
+    gbl_current_discid = asunder_disc_get_discid(disc);
 
-    snprintf(logStr, 1024, "update_tracklist() disk '%08x' '%s' '%s' '%s'\n",
+    snprintf(logStr, 1024, "update_tracklist() disk '%s' '%s' '%s' '%s'\n",
         gbl_current_discid, disc_artist, disc_title, disc_genre);
     debugLog(logStr);
     if (disc_artist != NULL)
@@ -823,9 +854,9 @@ void update_tracklist(cddb_disc_t * disc)
         gtk_entry_set_text(GTK_ENTRY(album_artist), disc_artist);
         
         singleartist = true;
-        for (track = cddb_disc_get_track_first(disc); track != NULL; track = cddb_disc_get_track_next(disc))
+        for (track = asunder_disc_get_track_first(disc); track != NULL; track = asunder_disc_get_track_next(disc))
         {
-            if (strcmp(disc_artist, cddb_track_get_artist(track)) != 0)
+            if (strcmp(disc_artist, asunder_track_get_artist(track)) != 0)
             {
                 singleartist = false;
                 break;
@@ -850,11 +881,16 @@ void update_tracklist(cddb_disc_t * disc)
     else
         gtk_entry_set_text( GTK_ENTRY( album_genre ), "Unknown" );
     
-    if(disc_year == 0)
+    if(disc_year != NULL) {
+      /*  
         disc_year = 1900;
     char disc_year_char[5];
     snprintf(disc_year_char, 5, "%d", disc_year);
-    gtk_entry_set_text( GTK_ENTRY( album_year ), disc_year_char );
+    */
+        trim_whitespace(disc_year);
+    
+        gtk_entry_set_text( GTK_ENTRY( album_year ), disc_year );
+    }
     
     model = create_model_from_disc(disc);
     gtk_tree_view_set_model(GTK_TREE_VIEW(tracklist), model);
@@ -882,7 +918,7 @@ void refresh(void)
 
 void refresh_thread_body(char * cdrom, int force)
 {
-    cddb_disc_t * disc;
+    asunder_disc * disc;
     
     if(working)
     /* don't do nothing */
@@ -897,7 +933,7 @@ void refresh_thread_body(char * cdrom, int force)
         if (disc == NULL)
             return;
         
-        if (gbl_current_discid != cddb_disc_get_discid(disc))
+        if (gbl_current_discid != asunder_disc_get_discid(disc))
         {
             /* only trash the user's inputs when the disc is new */
             
@@ -911,14 +947,14 @@ void refresh_thread_body(char * cdrom, int force)
             gdk_threads_leave();
         }
         
-        if ((!global_prefs->do_cddb_updates && !force) || working || refresh_forced)
+        if ((!global_prefs->do_musicbrainz_updates && !force) || working || refresh_forced)
         {
-            cddb_disc_destroy(disc);
+            asunder_disc_destroy(disc);
             return;
         }
         
         GList * disc_matches = lookup_disc(disc);
-        cddb_disc_destroy(disc);
+        asunder_disc_destroy(disc);
 
         if (working || refresh_forced)
             return;
@@ -931,7 +967,7 @@ void refresh_thread_body(char * cdrom, int force)
         if (gbl_disc_matches != NULL)
         {
             for (GList * curr = g_list_first(gbl_disc_matches); curr != NULL; curr = g_list_next(curr))
-                cddb_disc_destroy((cddb_disc_t *)curr->data);
+                asunder_disc_destroy((asunder_disc *)curr->data);
             g_list_free(gbl_disc_matches);
         }
         gbl_disc_matches = disc_matches;
@@ -948,15 +984,15 @@ void refresh_thread_body(char * cdrom, int force)
             GtkListStore * store = gtk_list_store_new(2, G_TYPE_STRING, G_TYPE_STRING);
             GtkTreeIter iter;
             GList * curr;
-            cddb_disc_t * tempdisc;
+            asunder_disc * tempdisc;
             
             for (curr = g_list_first(gbl_disc_matches); curr != NULL; curr = g_list_next(curr))
             {
-                tempdisc = (cddb_disc_t *)curr->data;
+                tempdisc = (asunder_disc *)curr->data;
                 gtk_list_store_append(store, &iter);
                 gtk_list_store_set(store, &iter,
-                    0, cddb_disc_get_artist(tempdisc),
-                    1, cddb_disc_get_title(tempdisc),
+                    0, asunder_disc_get_artist(tempdisc),
+                    1, asunder_disc_get_title(tempdisc),
                     -1);
             }
             gtk_combo_box_set_model(GTK_COMBO_BOX(pick_disc), GTK_TREE_MODEL(store));
@@ -967,7 +1003,7 @@ void refresh_thread_body(char * cdrom, int force)
             gtk_widget_show(lookup_widget(win_main, "pick_disc"));
         }
         else
-            update_tracklist((cddb_disc_t *)g_list_nth_data(gbl_disc_matches, 0));
+            update_tracklist((asunder_disc *)g_list_nth_data(gbl_disc_matches, 0));
         gdk_threads_leave();
     }
 }

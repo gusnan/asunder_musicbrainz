@@ -6327,7 +6327,7 @@ $as_echo "#define STDC_HEADERS 1" >>confdefs.h
 fi
 
 
-pkg_modules="gtk+-2.0 >= 2.4.0, gthread-2.0 >= 2.4.0, libcddb >= 0.9.5"
+pkg_modules="gtk+-2.0 >= 2.4.0, gthread-2.0 >= 2.4.0, libdiscid >= 0.6.0, libmusicbrainz5 >= 5.1 "
 
 
 

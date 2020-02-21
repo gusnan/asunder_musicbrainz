@@ -21,6 +21,7 @@ Foundation; version 2 of the licence.
 #include <glib.h>
 #include <glib/gstdio.h>
 
+#include "asunder_disc.h"
 #include "prefs.h"
 #include "main.h"
 #include "util.h"
@@ -65,13 +66,13 @@ void clear_prefs(prefs * p)
         free(p->format_albumdir);
     p->format_albumdir = NULL;
     
-    if (p->server_name != NULL) 
-        free(p->server_name);
-    p->server_name = NULL;
+    if (p->proxy_server_name != NULL) 
+        free(p->proxy_server_name);
+    p->proxy_server_name = NULL;
     
-    if (p->cddb_server_name != NULL) 
-        free(p->cddb_server_name);
-    p->cddb_server_name = NULL;
+    if (p->musicbrainz_server_name != NULL) 
+        free(p->musicbrainz_server_name);
+    p->musicbrainz_server_name = NULL;
 }
 
 // free memory allocated for prefs struct
@@ -139,25 +140,25 @@ prefs * get_default_prefs()
     
     p->eject_on_done = 0;
     
-    p->do_cddb_updates = 1;
+    p->do_musicbrainz_updates = 1;
     
     p->use_proxy = 0;
     
     p->do_log = 0;
     
-    p->server_name = malloc(sizeof(char) * (strlen("10.0.0.1") + 1));
-    if (p->server_name == NULL)
+    p->proxy_server_name = malloc(sizeof(char) * (strlen("10.0.0.1") + 1));
+    if (p->proxy_server_name == NULL)
         fatalError("malloc(sizeof(char) * (strlen(\"10.0.0.1\") + 1)) failed. Out of memory.");
-    strcpy(p->server_name, "10.0.0.1");
+    strcpy(p->proxy_server_name, "10.0.0.1");
     
-    p->port_number = DEFAULT_PROXY_PORT;
+    p->proxy_port_number = DEFAULT_PROXY_PORT;
     
-    p->cddb_server_name = malloc(sizeof(char) * (strlen(DEFAULT_CDDB_SERVER) + 1));
-    if (p->cddb_server_name == NULL)
-        fatalError("malloc(sizeof(char) * (strlen(DEFAULT_CDDB_SERVER) + 1)) failed. Out of memory.");
-    strcpy(p->cddb_server_name, DEFAULT_CDDB_SERVER);
+    p->musicbrainz_server_name = malloc(sizeof(char) * (strlen(DEFAULT_MUSICBRAINZ_SERVER) + 1));
+    if (p->musicbrainz_server_name == NULL)
+        fatalError("malloc(sizeof(char) * (strlen(DEFAULT_MUSICBRAINZ_SERVER) + 1)) failed. Out of memory.");
+    strcpy(p->musicbrainz_server_name, DEFAULT_MUSICBRAINZ_SERVER);
     
-    p->cddb_port_number = DEFAULT_CDDB_SERVER_PORT;
+    p->musicbrainz_port_number = DEFAULT_MUSICBRAINZ_SERVER_PORT;
     
     p->more_formats_expanded = 0;
     p->proprietary_formats_expanded = 0;
@@ -210,15 +211,15 @@ void set_widgets_from_prefs(prefs * p)
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(lookup_widget(win_prefs, "rip_opus")), p->rip_opus);
     gtk_range_set_value(GTK_RANGE(lookup_widget(win_prefs, "opusrate")), p->opus_bitrate);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(lookup_widget(win_prefs, "eject_on_done")), p->eject_on_done);
-    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(lookup_widget(win_prefs, "do_cddb_updates")), p->do_cddb_updates);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(lookup_widget(win_prefs, "do_musicbrainz_updates")), p->do_musicbrainz_updates);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(lookup_widget(win_prefs, "use_proxy")), p->use_proxy);
-    gtk_entry_set_text(GTK_ENTRY(lookup_widget(win_prefs, "server_name")), p->server_name);
-    snprintf(tempStr, 10, "%d", p->port_number);
-    gtk_entry_set_text(GTK_ENTRY(lookup_widget(win_prefs, "port_number")), tempStr);
+    gtk_entry_set_text(GTK_ENTRY(lookup_widget(win_prefs, "proxy_server_name")), p->proxy_server_name);
+    snprintf(tempStr, 10, "%d", p->proxy_port_number);
+    gtk_entry_set_text(GTK_ENTRY(lookup_widget(win_prefs, "proxy_port_number")), tempStr);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(lookup_widget(win_prefs, "do_log")), p->do_log);
-    gtk_entry_set_text(GTK_ENTRY(lookup_widget(win_prefs, "cddb_server_name")), p->cddb_server_name);
-    snprintf(tempStr, 10, "%d", p->cddb_port_number);
-    gtk_entry_set_text(GTK_ENTRY(lookup_widget(win_prefs, "cddb_port_number")), tempStr);
+    gtk_entry_set_text(GTK_ENTRY(lookup_widget(win_prefs, "musicbrainz_server_name")), p->musicbrainz_server_name);
+    snprintf(tempStr, 10, "%d", p->musicbrainz_port_number);
+    gtk_entry_set_text(GTK_ENTRY(lookup_widget(win_prefs, "musicbrainz_port_number")), tempStr);
     if(global_prefs->more_formats_expanded)
         gtk_expander_set_expanded (GTK_EXPANDER(lookup_widget(win_prefs, "more_formats_expander")), TRUE);
     //~ if(global_prefs->proprietary_formats_expanded)
@@ -313,25 +314,25 @@ void get_prefs_from_widgets(prefs * p)
     
     p->eject_on_done = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(lookup_widget(win_prefs, "eject_on_done")));
     
-    p->do_cddb_updates = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(lookup_widget(win_prefs, "do_cddb_updates")));
+    p->do_musicbrainz_updates = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(lookup_widget(win_prefs, "do_musicbrainz_updates")));
     
     p->use_proxy = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(lookup_widget(win_prefs, "use_proxy")));
     
-    tocopyc = gtk_entry_get_text(GTK_ENTRY(lookup_widget(win_prefs, "server_name")));
-    p->server_name = malloc(sizeof(char) * (strlen(tocopyc) + 1));
-    if (p->server_name == NULL)
+    tocopyc = gtk_entry_get_text(GTK_ENTRY(lookup_widget(win_prefs, "proxy_server_name")));
+    p->proxy_server_name = malloc(sizeof(char) * (strlen(tocopyc) + 1));
+    if (p->proxy_server_name == NULL)
         fatalError("malloc(sizeof(char) * (strlen(tocopyc) + 1)) failed. Out of memory.");
-    strncpy(p->server_name, tocopyc, strlen(tocopyc) + 1);
+    strncpy(p->proxy_server_name, tocopyc, strlen(tocopyc) + 1);
     
-    p->port_number = atoi(gtk_entry_get_text(GTK_ENTRY(lookup_widget(win_prefs, "port_number"))));
+    p->proxy_port_number = atoi(gtk_entry_get_text(GTK_ENTRY(lookup_widget(win_prefs, "proxy_port_number"))));
     
-    tocopyc = gtk_entry_get_text(GTK_ENTRY(lookup_widget(win_prefs, "cddb_server_name")));
-    p->cddb_server_name = malloc(sizeof(char) * (strlen(tocopyc) + 1));
-    if (p->cddb_server_name == NULL)
+    tocopyc = gtk_entry_get_text(GTK_ENTRY(lookup_widget(win_prefs, "musicbrainz_server_name")));
+    p->musicbrainz_server_name = malloc(sizeof(char) * (strlen(tocopyc) + 1));
+    if (p->musicbrainz_server_name == NULL)
         fatalError("malloc(sizeof(char) * (strlen(tocopyc) + 1)) failed. Out of memory.");
-    strncpy(p->cddb_server_name, tocopyc, strlen(tocopyc) + 1);
+    strncpy(p->musicbrainz_server_name, tocopyc, strlen(tocopyc) + 1);
     
-    p->cddb_port_number = atoi(gtk_entry_get_text(GTK_ENTRY(lookup_widget(win_prefs, "cddb_port_number"))));
+    p->musicbrainz_port_number = atoi(gtk_entry_get_text(GTK_ENTRY(lookup_widget(win_prefs, "musicbrainz_port_number"))));
     
     p->do_log = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(lookup_widget(win_prefs, "do_log")));
 
@@ -449,17 +450,17 @@ void save_prefs(prefs * p)
         fprintf(config, "%d\n", p->main_window_width);
         fprintf(config, "%d\n", p->main_window_height);
         fprintf(config, "%d\n", p->eject_on_done);
-        fprintf(config, "%d\n", p->do_cddb_updates);
+        fprintf(config, "%d\n", p->do_musicbrainz_updates);
         fprintf(config, "%d\n", p->use_proxy);
-        fprintf(config, "%s\n", p->server_name);
-        fprintf(config, "%d\n", p->port_number);
+        fprintf(config, "%s\n", p->proxy_server_name);
+        fprintf(config, "%d\n", p->proxy_port_number);
         fprintf(config, "%d\n", p->rip_wavpack);
         fprintf(config, "%d\n", p->wavpack_compression);
         fprintf(config, "%d\n", p->wavpack_hybrid);
         fprintf(config, "%d\n", p->wavpack_bitrate);
         fprintf(config, "%d\n", p->do_log);
-        fprintf(config, "%s\n", p->cddb_server_name);
-        fprintf(config, "%d\n", p->cddb_port_number);
+        fprintf(config, "%s\n", p->musicbrainz_server_name);
+        fprintf(config, "%d\n", p->musicbrainz_port_number);
         fprintf(config, "%d\n", p->rip_monkey);
         fprintf(config, "%d\n", p->monkey_compression);
         fprintf(config, "%s\n", "unused"); /* used to be p->rip_aac */
@@ -586,7 +587,7 @@ void load_prefs(prefs * p)
         p->eject_on_done = read_line_num(fd);
         
         // this one can be 0
-        p->do_cddb_updates = read_line_num(fd);
+        p->do_musicbrainz_updates = read_line_num(fd);
         
         // this one can be 0
         p->use_proxy = read_line_num(fd);
@@ -594,16 +595,16 @@ void load_prefs(prefs * p)
         aCharPtr = read_line(fd);
         if (aCharPtr != NULL)
         {
-            if (p->server_name != NULL)
-                free(p->server_name);
-            p->server_name = aCharPtr;
+            if (p->proxy_server_name != NULL)
+                free(p->proxy_server_name);
+            p->proxy_server_name = aCharPtr;
         }
         
-        p->port_number = read_line_num(fd);
-        if (p->port_number == 0 || !is_valid_port_number(p->port_number))
+        p->proxy_port_number = read_line_num(fd);
+        if (p->proxy_port_number == 0 || !is_valid_port_number(p->proxy_port_number))
         {
             printf("bad port number read from config file, using %d instead\n", DEFAULT_PROXY_PORT);
-            p->port_number = DEFAULT_PROXY_PORT;
+            p->proxy_port_number = DEFAULT_PROXY_PORT;
         }
         
         // this one can be 0
@@ -624,16 +625,16 @@ void load_prefs(prefs * p)
         aCharPtr = read_line(fd);
         if (aCharPtr != NULL)
         {
-            if (p->cddb_server_name != NULL)
-                free(p->cddb_server_name);
-            p->cddb_server_name = aCharPtr;
+            if (p->musicbrainz_server_name != NULL)
+                free(p->musicbrainz_server_name);
+            p->musicbrainz_server_name = aCharPtr;
         }
         
-        p->cddb_port_number = read_line_num(fd);
-        if (p->cddb_port_number == 0 || !is_valid_port_number(p->cddb_port_number))
+        p->musicbrainz_port_number = read_line_num(fd);
+        if (p->musicbrainz_port_number == 0 || !is_valid_port_number(p->musicbrainz_port_number))
         {
             printf("bad port number read from config file, using 888 instead\n");
-            p->cddb_port_number = DEFAULT_CDDB_SERVER_PORT;
+            p->musicbrainz_port_number = DEFAULT_MUSICBRAINZ_SERVER_PORT;
         }
         
         // this one can be 0
@@ -803,9 +804,9 @@ bool prefs_are_valid(void)
     
     // proxy port
     int rc;
-    int port_number;
-    rc = sscanf(gtk_entry_get_text(GTK_ENTRY(lookup_widget(win_prefs, "port_number"))), "%d", &port_number);
-    if (rc != 1 || !is_valid_port_number(port_number))
+    int proxy_port_number;
+    rc = sscanf(gtk_entry_get_text(GTK_ENTRY(lookup_widget(win_prefs, "proxy_port_number"))), "%d", &proxy_port_number);
+    if (rc != 1 || !is_valid_port_number(proxy_port_number))
     {
         warningDialog = gtk_message_dialog_new(GTK_WINDOW(win_main), GTK_DIALOG_DESTROY_WITH_PARENT,
                                                GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, 
@@ -815,14 +816,14 @@ bool prefs_are_valid(void)
         somethingWrong = true;
     }
     
-    // cddb server port
-    int cddb_port_number;
-    rc = sscanf(gtk_entry_get_text(GTK_ENTRY(lookup_widget(win_prefs, "cddb_port_number"))), "%d", &cddb_port_number);
-    if (rc != 1 || !is_valid_port_number(cddb_port_number))
+    // musicbrainz server port
+    int musicbrainz_port_number;
+    rc = sscanf(gtk_entry_get_text(GTK_ENTRY(lookup_widget(win_prefs, "musicbrainz_port_number"))), "%d", &musicbrainz_port_number);
+    if (rc != 1 || !is_valid_port_number(musicbrainz_port_number))
     {
         warningDialog = gtk_message_dialog_new(GTK_WINDOW(win_main), GTK_DIALOG_DESTROY_WITH_PARENT,
                                                GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, 
-                                               _("Invalid cddb server port number"));
+                                               _("Invalid musicbrainz server port number"));
         gtk_dialog_run(GTK_DIALOG(warningDialog));
         gtk_widget_destroy(warningDialog);
         somethingWrong = true;

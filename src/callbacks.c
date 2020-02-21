@@ -23,6 +23,7 @@ Foundation; version 2 of the licence.
 #include "callbacks.h"
 #include "interface.h"
 #include "support.h"
+#include "asunder_disc.h"
 #include "main.h"
 #include "prefs.h"
 #include "threads.h"
@@ -260,7 +261,7 @@ on_cancel_clicked                      (GtkButton       *button,
 }
 
 gboolean
-on_cddb_update_closed         (GtkWidget *widget,
+on_musicbrainz_update_closed         (GtkWidget *widget,
                                GdkEvent  *event,
                                GtkWidget**      update_window)
 {
@@ -358,7 +359,7 @@ on_pick_disc_changed                   (GtkComboBox     *combobox,
         selected == -1 ||
         (guint)selected >= g_list_length(gbl_disc_matches))
         return;
-    cddb_disc_t * disc = g_list_nth_data(gbl_disc_matches, selected);
+    asunder_disc * disc = g_list_nth_data(gbl_disc_matches, selected);
     update_tracklist(disc);
 }
 

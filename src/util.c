@@ -26,6 +26,7 @@ Foundation; version 2 of the licence.
 #include <glib/gprintf.h>
 
 #include "util.h"
+#include "asunder_disc.h"
 #include "main.h"
 #include "support.h"
 #include "prefs.h"

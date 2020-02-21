@@ -21,17 +21,17 @@ typedef struct _prefs
     int main_window_width;
     int main_window_height;
     int eject_on_done;
-    int do_cddb_updates;
+    int do_musicbrainz_updates;
     int use_proxy;
-    char* server_name;
-    int port_number;
+    char* proxy_server_name;
+    int proxy_port_number;
     int rip_wavpack;
     int wavpack_compression;
     int wavpack_hybrid;
     int wavpack_bitrate;
     int do_log;
-    char* cddb_server_name;
-    int cddb_port_number;
+    char* musicbrainz_server_name;
+    int musicbrainz_port_number;
     int rip_monkey;
     int monkey_compression;
     int rip_aac; /* no longer used */
@@ -49,12 +49,12 @@ typedef struct _prefs
     int rip_fdkaac;
     int fdkaac_bitrate;
     char concatenated_track_separator[2];
-    
+
 } prefs;
 
 #define DEFAULT_PROXY_PORT 8080
-#define DEFAULT_CDDB_SERVER "freedb.freedb.org"
-#define DEFAULT_CDDB_SERVER_PORT 8880
+#define DEFAULT_MUSICBRAINZ_SERVER "musicbrainz.org"
+#define DEFAULT_MUSICBRAINZ_SERVER_PORT 8880
 
 extern prefs * global_prefs;
 

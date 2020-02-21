@@ -21,6 +21,7 @@ Foundation; version 2 of the licence.
 #include <libgen.h>
 
 #include "threads.h"
+#include "asunder_disc.h"
 #include "main.h"
 #include "prefs.h"
 #include "util.h"
