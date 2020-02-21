@@ -186,23 +186,11 @@ int musicbrainz_get_data(musicbrainz_conn *conn, Mb5Release release, asunder_dis
                             Mb5Medium Medium = mb5_medium_list_item(MediumList, current_medium);
                             if (Medium)
                             {
-                                int alloc_size = 10;
-                                char *medium_title = malloc(alloc_size);
-                                int required_size;
+                                char medium_title[256];
 
                                 Mb5TrackList track_list = mb5_medium_get_tracklist(Medium);
 
-                                /* Another way of getting a string. Preallocate a buffer
-                                 * and check if if was big enough when retrieving string.
-                                 * If not, reallocate it to be big enough and get it again.
-                                 */
-
-                                required_size = mb5_medium_get_title(Medium, medium_title, alloc_size);
-                                if (required_size > alloc_size)
-                                {
-                                    medium_title = realloc(medium_title, required_size+1);
-                                    mb5_medium_get_title(Medium, medium_title, required_size+1);
-                                }
+                                mb5_medium_get_title(Medium, medium_title, sizeof(medium_title));
 
                                 printf("Found media: '%s', position %d\n", medium_title, mb5_medium_get_position(Medium));
                                 
@@ -366,8 +354,6 @@ int musicbrainz_get_data(musicbrainz_conn *conn, Mb5Release release, asunder_dis
                                 printf("\n");
                                 
                                 g_slist_free_full(artist_list, g_free);
-
-                                free(medium_title);
                             }
                         }
                         
