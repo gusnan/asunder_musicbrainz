@@ -36,6 +36,8 @@ char *get_discid(char *cdrom)
         fprintf(stderr, "Error: %s\n", discid_get_error_msg(discid));
         
         discid_free(discid);
+
+        free(result);
         return NULL;
     }
     
