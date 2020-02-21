@@ -31,47 +31,47 @@ char *get_discid(char *cdrom)
 
     // get the disc id
     DiscId *discid = discid_new();
-      
+
     if ( discid_read_sparse(discid, cdrom, 0) == 0 ) {
         fprintf(stderr, "Error: %s\n", discid_get_error_msg(discid));
-        
+
         discid_free(discid);
         free(result);
         return NULL;
     }
-    
+
     sprintf(result, "%s", discid_get_id(discid));
-    
+
     discid_free(discid);
-    
+
     return result;
 }
 
 musicbrainz_conn *musicbrainz_connection_new(char *server, int port)
 {
     musicbrainz_conn *conn = malloc(sizeof(musicbrainz_conn));
-    
+
     conn->number_of_matches = 0;
     conn->query_counter = 0;
 
     conn->mb5_query = mb5_query_new("asunder-2.9.6", server, port);
-    
+
     // Empty the error message
     g_sprintf(conn->error_message, "%s", "");
-    
+
     tQueryResult result = mb5_query_get_lastresult(conn->mb5_query);
     if (result != eQuery_Success) {
-        
+
         mb5_query_get_lasterrormessage(conn->mb5_query, conn->error_message, sizeof(conn->error_message));
     }
-    
+
     return conn;
 }
 
 void musicbrainz_set_proxy(musicbrainz_conn *conn, char *proxy_server, int proxy_port)
 {
     if (conn != NULL) {
-        
+
         mb5_query_set_proxyhost(conn->mb5_query, proxy_server);
         mb5_query_set_proxyport(conn->mb5_query, proxy_port);
     }
@@ -82,7 +82,7 @@ void musicbrainz_connection_destroy(musicbrainz_conn *conn)
     if (conn != NULL) {
         
         mb5_query_delete(conn->mb5_query);
-        
+
         free(conn);
         conn = NULL;
     }
@@ -102,36 +102,34 @@ int musicbrainz_get_data(musicbrainz_conn *conn, Mb5Release release, asunder_dis
         char **ParamNames;
         char **ParamValues;
         char release_ID[256];
-        
-                                    char release_date[256];
 
+        char release_date[256];
 
         ParamNames = malloc(sizeof(char *));
         ParamNames[0] = malloc(256);
         ParamValues = malloc(sizeof(char *));
         ParamValues[0] = malloc(256);
-        
+
         strcpy(ParamNames[0], "inc");
         strcpy(ParamValues[0], "artists labels recordings release-groups url-rels discids artist-credits");
 
         mb5_release_get_id(release, release_ID, sizeof(release_ID));
 
         metadata2 = mb5_query_query(conn->mb5_query, "release", release_ID, "", 1, ParamNames, ParamValues);
-        
+
         if (metadata2) {
             Mb5Release full_release = mb5_metadata_get_release(metadata2);
-        
-                        
+
             mb5_release_get_date(full_release, release_date, sizeof(release_date));
-            
+
             printf("Relase date: %s\n", release_date);
-            
+
             asunder_disc_set_release_date(in_disc, release_date);
 
             // Get the album artist
             artist_credit = mb5_release_get_artistcredit(full_release);
             name_credit_list = mb5_artistcredit_get_namecreditlist(artist_credit);
-            
+
             for (int i = 0; i < mb5_namecredit_list_size (name_credit_list); i++) {
                 Mb5NameCredit  name_credit = mb5_namecredit_list_item (name_credit_list, i);
                 Mb5Artist      artist;
@@ -145,12 +143,11 @@ int musicbrainz_get_data(musicbrainz_conn *conn, Mb5Release release, asunder_dis
                 mb5_artist_get_name (artist, artist_name, required_size + 1);
                 //debug (DEBUG_INFO, "==> [MB] ARTIST NAME: %s\n", artist_name);
                 // printf("Release artist: %s\n", artist_name);
-                
+
                 asunder_disc_set_artist(in_disc, artist_name);
-                
-                
+
             }
-                
+
             if (full_release) {
                 /*
                  * However, these releases will include information for all media in the release
@@ -161,9 +158,9 @@ int musicbrainz_get_data(musicbrainz_conn *conn, Mb5Release release, asunder_dis
                 if (MediumList)
                 {
                     int number_of_matches2 = mb5_medium_list_size(MediumList);
-                    
+
                     // printf("Number of matches 2: %d\n", number_of_matches2);
-                    
+
                     if (number_of_matches2 != 0)
                     {
                         Mb5ReleaseGroup ReleaseGroup = mb5_release_get_releasegroup(full_release);
@@ -176,7 +173,7 @@ int musicbrainz_get_data(musicbrainz_conn *conn, Mb5Release release, asunder_dis
                             char title[256];
 
                             mb5_releasegroup_get_title(ReleaseGroup, title, sizeof(title));
-                            
+
                             asunder_disc_set_title(in_disc, title);
                         }
                         else
@@ -194,14 +191,14 @@ int musicbrainz_get_data(musicbrainz_conn *conn, Mb5Release release, asunder_dis
                                 mb5_medium_get_title(Medium, medium_title, sizeof(medium_title));
 
                                 printf("Found media: '%s', position %d\n", medium_title, mb5_medium_get_position(Medium));
-                                
+
                                 GSList *artist_list = NULL;
                                 GSList *temp_list = NULL;
-                                
+
                                 gchar *temp_string = NULL;
 
                                 gboolean compilation = FALSE;
-                                       
+
                                 if (track_list)
                                 {
                                     int current_track=0;
@@ -211,20 +208,18 @@ int musicbrainz_get_data(musicbrainz_conn *conn, Mb5Release release, asunder_dis
                                     {
                                         Mb5Track track = mb5_track_list_item(track_list, current_track);
                                         Mb5Recording recording = mb5_track_get_recording(track);
-                                        
-                                        
+
                                         // Get the artist from track
                                         if (recording)
                                         {
                                             Mb5ArtistCredit track_artist_credit = mb5_artistcredit_clone(mb5_recording_get_artistcredit(recording));
                                             Mb5NameCreditList temp_name_credit_list = mb5_artistcredit_get_namecreditlist(track_artist_credit);
-                                            
+
                                             Mb5NameCreditList new_name_credit_list = mb5_namecredit_list_clone(temp_name_credit_list);
-                                            
+
                                             // Get per track artist
-                                            
                                             int size = mb5_namecredit_list_size(new_name_credit_list);
-            
+
                                             for (int i = 0; i < size; i++) {
                                                 Mb5NameCredit new_name_credit = mb5_namecredit_list_item (new_name_credit_list, i);
                                                 Mb5Artist artist;
@@ -249,19 +244,19 @@ int musicbrainz_get_data(musicbrainz_conn *conn, Mb5Release release, asunder_dis
                                             mb5_namecredit_list_delete(new_name_credit_list);
                                         }
                                     }
-                                    
+
                                     // Check if it is a Compilation CD (This might be doable using the MusicBrainz API,
                                     // I haven't checked carefully. I assume it is, if there's several different artists, and
                                     // not one and the same for all the tracks.
                                     //
                                     if (artist_list != NULL) {
-                                        
+
                                         for (temp_list = artist_list; temp_list != NULL; temp_list = temp_list -> next) {
-                                            
+
                                             if (temp_string == NULL) {
                                                 temp_string = g_strdup(temp_list->data);
                                             } else {
-                                                
+
                                                 if (g_strcmp0(temp_list->data, temp_string) != 0) {
                                                     compilation = TRUE;
                                                 }
@@ -276,7 +271,7 @@ int musicbrainz_get_data(musicbrainz_conn *conn, Mb5Release release, asunder_dis
                                 if (track_list)
                                 {
                                     int current_track = 0;
-                                    
+
                                     GSList *list = artist_list;
 
                                     int tracklist_offset = mb5_track_list_get_offset(track_list);
@@ -292,12 +287,12 @@ int musicbrainz_get_data(musicbrainz_conn *conn, Mb5Release release, asunder_dis
 
                                         Mb5Track track = mb5_track_list_item(track_list, current_track);
                                         Mb5Recording recording = mb5_track_get_recording(track);
-                                        
+
                                         /* Yet another way of getting string. Call it once to
                                          * find out how long the buffer needs to be, allocate
                                          * enough space and then call again.
                                          */
-                                        
+
                                         if (recording)
                                         {
                                             required_length = mb5_recording_get_title(recording, track_title, 0);
@@ -321,7 +316,7 @@ int musicbrainz_get_data(musicbrainz_conn *conn, Mb5Release release, asunder_dis
                                             asunder_track_set_number(new_track, mb5_track_get_position(track));
                                             asunder_track_set_length(new_track, track_length);
                                             asunder_track_set_artist(new_track, (gchar*)(list->data));
-                                            
+
                                         } else {
                                             asunder_track_set_title(new_track, track_title);
                                             asunder_track_set_number(new_track, mb5_track_get_position(track));
@@ -338,13 +333,12 @@ int musicbrainz_get_data(musicbrainz_conn *conn, Mb5Release release, asunder_dis
                                         free(track_title);
                                     }
                                 }
-                                
+
                                 g_slist_free_full(artist_list, g_free);
                             }
                         }
-                        
                     }
-                    
+
                     /* We must delete the result of 'media_matching_discid' */
                     mb5_medium_list_delete(MediumList);
                 }
@@ -357,9 +351,9 @@ int musicbrainz_get_data(musicbrainz_conn *conn, Mb5Release release, asunder_dis
         free(ParamValues);
         free(ParamNames[0]);
         free(ParamNames);
-        
+
         if (artist_name != NULL) g_free (artist_name);
-        
+
     }
     return 0;
 }
@@ -369,7 +363,7 @@ int musicbrainz_query(musicbrainz_conn *conn, asunder_disc *in_disc)
 {
     conn->query_counter = 0;
     int query_result = 0;
-    
+
     Mb5Metadata metadata1 = mb5_query_query(conn->mb5_query, "discid", in_disc->disc_id, "", 0, NULL, NULL);
     char errormessage[256];
 
@@ -378,7 +372,7 @@ int musicbrainz_query(musicbrainz_conn *conn, asunder_disc *in_disc)
 
     mb5_query_get_lasterrormessage(conn->mb5_query, errormessage, sizeof(errormessage));
     printf("Result: %d\nHTTPCode: %d\nErrorMessage: '%s'\n", result, httpcode, errormessage);
-    
+
     if (metadata1) {
         Mb5Disc disc = mb5_metadata_get_disc(metadata1);
         if (disc) {
@@ -386,14 +380,14 @@ int musicbrainz_query(musicbrainz_conn *conn, asunder_disc *in_disc)
             if (release_list) {
                 conn->number_of_matches = mb5_release_list_size(release_list);
                 conn->release_list = release_list;
-                
+
                 query_result = conn->number_of_matches;
-                
+
                 conn->current_release = 0;
             }
         }
     }
-    
+
     return query_result;
 }
 
@@ -414,11 +408,10 @@ char *musicbrainz_get_error_message(musicbrainz_conn *conn)
 int musicbrainz_read(musicbrainz_conn *conn, asunder_disc *possible_match)
 {
     Mb5Release release = mb5_release_list_item(conn->release_list, conn->current_release);
-                    
+
     if (release) {
         musicbrainz_get_data(conn, release, possible_match);
     }
 
-    
     return TRUE;
 }
