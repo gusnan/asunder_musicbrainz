@@ -146,6 +146,11 @@ int musicbrainz_get_data(musicbrainz_conn *conn, Mb5Release release, asunder_dis
 
                 asunder_disc_set_artist(in_disc, artist_name);
 
+                if (artist_name != NULL) {
+                    g_free(artist_name);
+                    artist_name = NULL;
+                }
+
             }
 
             if (full_release) {
@@ -231,15 +236,13 @@ int musicbrainz_get_data(musicbrainz_conn *conn, Mb5Release release, asunder_dis
                                                 mb5_artist_get_name (artist, artist_name, required_size + 1);
 
                                                 gchar *temp_artist = g_strdup(artist_name);
-                                                
+
                                                 g_free(artist_name);
 
                                                 temp_list = g_slist_append(temp_list, temp_artist);
                                             }
                                             
                                             artist_list = temp_list;
-                                            
-                                            mb5_artistcredit_delete(track_artist_credit);
                                             
                                             mb5_namecredit_list_delete(new_name_credit_list);
                                         }
@@ -271,7 +274,7 @@ int musicbrainz_get_data(musicbrainz_conn *conn, Mb5Release release, asunder_dis
                                 if (track_list)
                                 {
                                     int current_track = 0;
-
+                                    char *track_title = NULL;
                                     GSList *list = artist_list;
 
                                     int tracklist_offset = mb5_track_list_get_offset(track_list);
@@ -280,7 +283,6 @@ int musicbrainz_get_data(musicbrainz_conn *conn, Mb5Release release, asunder_dis
 
                                     for (current_track = 0; current_track < mb5_track_list_size(track_list); current_track++)
                                     {
-                                        char *track_title = 0;
                                         int required_length = 0;
 
                                         asunder_track *new_track = asunder_track_new();
@@ -330,7 +332,10 @@ int musicbrainz_get_data(musicbrainz_conn *conn, Mb5Release release, asunder_dis
 
                                         list = list -> next;
 
-                                        free(track_title);
+                                        if (track_title != NULL) {
+                                            g_free(track_title);
+                                            track_title = NULL;
+                                        }
                                     }
                                 }
 
@@ -351,8 +356,6 @@ int musicbrainz_get_data(musicbrainz_conn *conn, Mb5Release release, asunder_dis
         free(ParamValues);
         free(ParamNames[0]);
         free(ParamNames);
-
-        if (artist_name != NULL) g_free (artist_name);
 
     }
     return 0;
