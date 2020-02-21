@@ -199,7 +199,7 @@ int musicbrainz_get_data(musicbrainz_conn *conn, Mb5Release release, asunder_dis
                                 GSList *temp_list = NULL;
                                 
                                 gchar *temp_string = NULL;
-                                
+
                                 gboolean compilation = FALSE;
                                        
                                 if (track_list)
@@ -317,16 +317,12 @@ int musicbrainz_get_data(musicbrainz_conn *conn, Mb5Release release, asunder_dis
 
                                         // If a compilation, print artist for each track.
                                         if (compilation) {
-                                            printf("%02d - %s - '%s' (%s)\n", mb5_track_get_position(track), (gchar*)(list->data), track_title, temp_time_string);
-                                            
                                             asunder_track_set_title(new_track, track_title);
                                             asunder_track_set_number(new_track, mb5_track_get_position(track));
                                             asunder_track_set_length(new_track, track_length);
                                             asunder_track_set_artist(new_track, (gchar*)(list->data));
                                             
                                         } else {
-                                            printf("%02d - '%s' (%s)\n", mb5_track_get_position(track), track_title, temp_time_string);
-                                            
                                             asunder_track_set_title(new_track, track_title);
                                             asunder_track_set_number(new_track, mb5_track_get_position(track));
                                             asunder_track_set_length(new_track, track_length);
@@ -342,16 +338,6 @@ int musicbrainz_get_data(musicbrainz_conn *conn, Mb5Release release, asunder_dis
                                         free(track_title);
                                     }
                                 }
-                                
-                                printf("Compilation: ");
-                                
-                                if (compilation) {
-                                    printf("Yes");
-                                } else {
-                                    printf("No");
-                                }
-                                
-                                printf("\n");
                                 
                                 g_slist_free_full(artist_list, g_free);
                             }
