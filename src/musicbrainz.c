@@ -228,7 +228,6 @@ int musicbrainz_get_data(musicbrainz_conn *conn, Mb5Release release, asunder_dis
                                             for (int i = 0; i < size; i++) {
                                                 Mb5NameCredit new_name_credit = mb5_namecredit_list_item (new_name_credit_list, i);
                                                 Mb5Artist artist;
-                                                char *artist_name = NULL;
                                                 
                                                 artist = mb5_namecredit_get_artist (new_name_credit);
 
