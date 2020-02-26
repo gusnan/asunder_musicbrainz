@@ -84,7 +84,6 @@ void musicbrainz_connection_destroy(musicbrainz_conn *conn)
         mb5_query_delete(conn->mb5_query);
 
         free(conn);
-        conn = NULL;
     }
 }
 
