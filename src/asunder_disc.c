@@ -1,5 +1,5 @@
-
 #include <gtk/gtk.h>
+#include <stdbool.h>
 
 #include "musicbrainz5/mb5_c.h"
 
@@ -195,7 +195,7 @@ void asunder_disc_set_release_date(asunder_disc *disc, char *release_date)
         if (disc->release_date != NULL) {
             free(disc->release_date);
         }
-        
+
         disc->release_date = g_strdup_printf("%s", release_date);
     }
 }
@@ -207,6 +207,19 @@ char *asunder_disc_get_discid(asunder_disc *disc)
 
     if (disc != NULL) result = disc->disc_id;
 
+    return result;
+}
+
+void asunder_disc_set_compilation(asunder_disc *disc, bool in_compilation)
+{
+    if (disc != NULL) disc->compilation = in_compilation;
+}
+
+bool asunder_disc_get_compilation(asunder_disc *disc)
+{
+    bool result = FALSE;
+
+    if (disc != NULL) result = disc->compilation;
     return result;
 }
 

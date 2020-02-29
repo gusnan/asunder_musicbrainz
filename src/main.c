@@ -829,7 +829,6 @@ void update_tracklist(asunder_disc * disc)
     char * disc_title = g_strdup (asunder_disc_get_title (disc));
     char * disc_genre = g_strdup (asunder_disc_get_genre (disc));			// lnr
     char * disc_year = asunder_disc_get_release_date(disc);
-    asunder_track * track;
     bool singleartist;
     char logStr[1024];
 
@@ -854,14 +853,9 @@ void update_tracklist(asunder_disc * disc)
         gtk_entry_set_text(GTK_ENTRY(album_artist), disc_artist);
         
         singleartist = true;
-        for (track = asunder_disc_get_track_first(disc); track != NULL; track = asunder_disc_get_track_next(disc))
-        {
-            if (strcmp(disc_artist, asunder_track_get_artist(track)) != 0)
-            {
-                singleartist = false;
-                break;
-            }
-        }
+
+        if (asunder_disc_get_compilation(disc) == TRUE) singleartist = false;
+
         gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(lookup_widget(win_main, "single_artist")), singleartist);
     }
     if (disc_title != NULL)

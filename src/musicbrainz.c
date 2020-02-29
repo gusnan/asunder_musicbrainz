@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 
 #include <glib.h>
 #include <glib/gprintf.h>
@@ -269,6 +270,8 @@ int musicbrainz_get_data(musicbrainz_conn *conn, Mb5Release release, asunder_dis
                                         }
                                     }
                                 }
+
+                                if (compilation) asunder_disc_set_compilation(in_disc, TRUE);
 
                                 if (track_list)
                                 {

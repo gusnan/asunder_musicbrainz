@@ -19,6 +19,7 @@ Foundation; version 2 of the licence.
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include <stdbool.h>
 
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>

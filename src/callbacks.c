@@ -19,6 +19,7 @@ Foundation; version 2 of the licence.
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <stdbool.h>
 
 #include "callbacks.h"
 #include "interface.h"

@@ -17,6 +17,8 @@ typedef struct asunder_disc
     
     char *disc_id;
 
+    bool compilation;
+
 } asunder_disc;
 
 
@@ -53,6 +55,9 @@ void asunder_disc_set_length(asunder_disc *disc, unsigned int length);
 void asunder_disc_set_release_date(asunder_disc *disc, char *release_date);
 
 char *asunder_disc_get_discid(asunder_disc *disc);
+
+void asunder_disc_set_compilation(asunder_disc *disc, bool compilation);
+bool asunder_disc_get_compilation(asunder_disc *disc);
 
 
 asunder_track *asunder_track_new();

@@ -22,6 +22,7 @@ Foundation; version 2 of the licence.
 #include <string.h>
 #include <sys/wait.h>
 #include <errno.h>
+#include <stdbool.h>
 
 #include "asunder_disc.h"
 #include "main.h"

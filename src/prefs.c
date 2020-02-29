@@ -20,6 +20,7 @@ Foundation; version 2 of the licence.
 #include <unistd.h>
 #include <glib.h>
 #include <glib/gstdio.h>
+#include <stdbool.h>
 
 #include "asunder_disc.h"
 #include "prefs.h"
