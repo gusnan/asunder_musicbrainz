@@ -325,7 +325,7 @@ int musicbrainz_get_data(musicbrainz_conn *conn, Mb5Release release, asunder_dis
                                             asunder_track_set_title(new_track, track_title);
                                             asunder_track_set_number(new_track, mb5_track_get_position(track));
                                             asunder_track_set_length(new_track, track_length);
-                                            asunder_track_set_artist(new_track, artist_name);
+                                            asunder_track_set_artist(new_track, asunder_disc_get_artist(in_disc));
                                         }
 
                                         asunder_disc_add_track(in_disc, new_track);
