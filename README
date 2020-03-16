@@ -7,7 +7,7 @@ Asunder is a graphical Audio CD ripper and encoder. You can use it to save track
 Features
 ========
 * Supports WAV, MP3, Ogg Vorbis, FLAC, Opus, Wavpack, Musepack, AAC, and Monkey's audio files
-* Uses CDDB to name and tag each track
+* Uses Musicbrainz to name and tag each track
 * Can encode to multiple formats in one session
 * Creates M3U playlists
 * Allows for each track to be by a different artist
@@ -17,8 +17,10 @@ Requirements
 ============
 * Linux
 * GTK 2.4 or greater
-* Libcddb 0.9.5 or greater
-  http://libcddb.sourceforge.net/
+* Musicbrainz 5.1 or greater
+  https://musicbrainz.org/doc/libmusicbrainz
+* libdiscid 0.6.0 or greater
+  https://musicbrainz.org/doc/libdiscid
 * Cdparanoia
   http://www.xiph.org/paranoia/
 * LAME (optional for MP3 support)
@@ -37,7 +39,7 @@ Requirements
 * mac (optional for Monkey's Audio support)
   http://www.monkeysaudio.com/
 
-To compile from source you may need the -dev or -devel versions of GTK and libcddb. On Ubuntu these packages are called libgtk2.0-dev and libcddb2-dev.
+To compile from source you may need the -dev or -devel versions of GTK, Musicbrainz and libdiscid. On Ubuntu these packages are called libgtk2.0-dev, libmusicbrainz5-dev and libdiscid-dev.
 
 Compiling
 =========
